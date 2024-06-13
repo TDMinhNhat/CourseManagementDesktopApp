@@ -158,6 +158,7 @@
             this.btnLogin.Text = "Đăng Nhập";
             this.btnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLoginClicked);
             // 
             // btnExit
             // 
@@ -176,6 +177,7 @@
             this.btnExit.Text = "Thoát";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.BtnExitClicked);
             // 
             // FLogin
             // 

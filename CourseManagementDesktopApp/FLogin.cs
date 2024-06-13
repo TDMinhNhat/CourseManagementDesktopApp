@@ -26,5 +26,15 @@ namespace CourseManagementDesktopApp
             this.btnExit.Image = (Image) bitmap;
             this.btnExit.ImageAlign = ContentAlignment.MiddleLeft;
         }
+
+        private void BtnLoginClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnExitClicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
