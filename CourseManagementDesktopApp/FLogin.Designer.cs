@@ -205,6 +205,7 @@
             this.Name = "FLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng Nhập Tài Khoản";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FCLoginEvent);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbAccountName)).EndInit();

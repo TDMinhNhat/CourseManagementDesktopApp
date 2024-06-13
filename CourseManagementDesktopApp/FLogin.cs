@@ -50,13 +50,15 @@ namespace CourseManagementDesktopApp
                     MessageBox.Show("Tên tài khoản hoặc mật khẩu không đúng", "Lỗi Đăng Nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txbAccountName.Focus();
                     return;
-                } else if(target.Role == "1" || target.Role == "2")
+                } else if(target.Role.Equals("Học Viên") || target.Role.Equals("Giảng Viên"))
                 {
                     MessageBox.Show("Phần mềm chỉ chấp nhận các tài khoản thuộc quyền QUẢN LÝ thực hiện", "Lỗi Đăng Nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 niLogin.ShowBalloonTip(5000);
+                HideForm(true);
+                new FDashBoard().Show();
             }
         }
 
@@ -66,6 +68,19 @@ namespace CourseManagementDesktopApp
             {
                 Application.Exit();
             }
+        }
+
+        public void HideForm(bool value)
+        {
+            if (value)
+                Hide();
+            else 
+                Show();
+        }
+
+        private void FCLoginEvent(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

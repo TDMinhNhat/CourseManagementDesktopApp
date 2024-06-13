@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDashBoard.Designer.cs">
+      <DependentUpon>FDashBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="FLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FDashBoard.resx">
+      <DependentUpon>FDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +83,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CourseManagementDesktopApp.Models.PersonDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -88,6 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CourseManagementDTO\CourseManagementDTO.csproj">
+      <Project>{487f5508-c105-4791-97cd-37a7b9ad5b11}</Project>
+      <Name>CourseManagementDTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CourseManagementModel\CourseManagementModel.csproj">
       <Project>{f0e0e237-abd5-46f6-b5f4-9bf488438112}</Project>
       <Name>CourseManagementModel</Name>
@@ -95,12 +109,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\account_name.png" />
+    <Content Include="Images\add.png" />
     <Content Include="Images\authenticate_icon.ico" />
     <Content Include="Images\authenticate_icon.png" />
+    <Content Include="Images\categories.png" />
+    <Content Include="Images\courses.png" />
+    <Content Include="Images\dashboard.ico" />
+    <Content Include="Images\delete.png" />
     <Content Include="Images\exit.png" />
     <Content Include="Images\login.png" />
     <Content Include="Images\notice.ico" />
     <Content Include="Images\password.png" />
+    <Content Include="Images\satistics.png" />
+    <Content Include="Images\scheduled.png" />
+    <Content Include="Images\update.png" />
+    <Content Include="Images\users.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
