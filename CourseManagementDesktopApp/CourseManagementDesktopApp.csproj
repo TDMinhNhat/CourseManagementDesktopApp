@@ -99,6 +99,7 @@
     <Content Include="Images\authenticate_icon.png" />
     <Content Include="Images\exit.png" />
     <Content Include="Images\login.png" />
+    <Content Include="Images\notice.ico" />
     <Content Include="Images\password.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

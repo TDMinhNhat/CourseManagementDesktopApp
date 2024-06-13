@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FLogin));
             this.panel1 = new System.Windows.Forms.Panel();
             this.txbAccountName = new System.Windows.Forms.TextBox();
@@ -40,6 +41,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.niLogin = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbAccountName)).BeginInit();
             this.panel2.SuspendLayout();
@@ -179,6 +181,14 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.BtnExitClicked);
             // 
+            // niLogin
+            // 
+            this.niLogin.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.niLogin.BalloonTipText = "Đăng nhập tài khoản thành công!";
+            this.niLogin.BalloonTipTitle = "Thông Báo";
+            this.niLogin.Icon = ((System.Drawing.Icon)(resources.GetObject("niLogin.Icon")));
+            this.niLogin.Visible = true;
+            // 
             // FLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +229,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.NotifyIcon niLogin;
     }
 }
 
