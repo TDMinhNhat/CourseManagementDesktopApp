@@ -56,36 +56,51 @@
             this.lblPerID = new System.Windows.Forms.Label();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.tpCategory = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbCategoryParent = new System.Windows.Forms.ComboBox();
+            this.btnDeleteCate = new System.Windows.Forms.Button();
+            this.btnUpdateCate = new System.Windows.Forms.Button();
+            this.btnAddCate = new System.Windows.Forms.Button();
+            this.lblCategoryParent = new System.Windows.Forms.Label();
+            this.txbCategoryName = new System.Windows.Forms.TextBox();
+            this.lblCategoryName = new System.Windows.Forms.Label();
+            this.txbCategoryID = new System.Windows.Forms.TextBox();
+            this.lblCategoryID = new System.Windows.Forms.Label();
+            this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.tpCourse = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txbDateCreatedCourse = new System.Windows.Forms.TextBox();
+            this.lblDateCreatedCourse = new System.Windows.Forms.Label();
+            this.btnChooseImage = new System.Windows.Forms.Button();
+            this.lblImageCourse = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbCateID = new System.Windows.Forms.ComboBox();
+            this.btnDeleteCourse = new System.Windows.Forms.Button();
+            this.btnUpdateCourse = new System.Windows.Forms.Button();
+            this.btnAddCourse = new System.Windows.Forms.Button();
+            this.lblCateID = new System.Windows.Forms.Label();
+            this.txbCourseName = new System.Windows.Forms.TextBox();
+            this.lblCourseName = new System.Windows.Forms.Label();
+            this.txbCourseID = new System.Windows.Forms.TextBox();
+            this.lblCourseID = new System.Windows.Forms.Label();
+            this.dgvCourse = new System.Windows.Forms.DataGridView();
             this.tpClassroom = new System.Windows.Forms.TabPage();
             this.tpStatistic = new System.Windows.Forms.TabPage();
             this.iList = new System.Windows.Forms.ImageList(this.components);
-            this.dgvCategory = new System.Windows.Forms.DataGridView();
-            this.dgvUsersPerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.perNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.personDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblCategoryID = new System.Windows.Forms.Label();
-            this.txbCategoryID = new System.Windows.Forms.TextBox();
-            this.lblCategoryName = new System.Windows.Forms.Label();
-            this.txbCategoryName = new System.Windows.Forms.TextBox();
-            this.lblCategoryParent = new System.Windows.Forms.Label();
-            this.btnAddCate = new System.Windows.Forms.Button();
-            this.btnUpdateCate = new System.Windows.Forms.Button();
-            this.btnDeleteCate = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cbCategoryParent = new System.Windows.Forms.ComboBox();
+            this.lblDateModifierCourse = new System.Windows.Forms.Label();
+            this.txbDateModifierCourse = new System.Windows.Forms.TextBox();
+            this.ofdFileImage = new System.Windows.Forms.OpenFileDialog();
             this.tbDashboard.SuspendLayout();
             this.tpUsers.SuspendLayout();
             this.pnUsersControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.tpCategory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personDTOBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
+            this.tpCourse.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCourse)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDashboard
@@ -373,17 +388,8 @@
             this.dgvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvUsers.AutoGenerateColumns = false;
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvUsersPerID,
-            this.perNameDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.roleDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn});
-            this.dgvUsers.DataSource = this.personDTOBindingSource;
             this.dgvUsers.Location = new System.Drawing.Point(0, 0);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
@@ -404,8 +410,150 @@
             this.tpCategory.Text = "DANH MỤC";
             this.tpCategory.ToolTipText = "Quản lý các danh mục";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.cbCategoryParent);
+            this.panel1.Controls.Add(this.btnDeleteCate);
+            this.panel1.Controls.Add(this.btnUpdateCate);
+            this.panel1.Controls.Add(this.btnAddCate);
+            this.panel1.Controls.Add(this.lblCategoryParent);
+            this.panel1.Controls.Add(this.txbCategoryName);
+            this.panel1.Controls.Add(this.lblCategoryName);
+            this.panel1.Controls.Add(this.txbCategoryID);
+            this.panel1.Controls.Add(this.lblCategoryID);
+            this.panel1.Location = new System.Drawing.Point(508, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(476, 457);
+            this.panel1.TabIndex = 2;
+            // 
+            // cbCategoryParent
+            // 
+            this.cbCategoryParent.FormattingEnabled = true;
+            this.cbCategoryParent.Location = new System.Drawing.Point(111, 77);
+            this.cbCategoryParent.Name = "cbCategoryParent";
+            this.cbCategoryParent.Size = new System.Drawing.Size(347, 21);
+            this.cbCategoryParent.TabIndex = 21;
+            // 
+            // btnDeleteCate
+            // 
+            this.btnDeleteCate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteCate.BackColor = System.Drawing.Color.Lime;
+            this.btnDeleteCate.FlatAppearance.BorderSize = 0;
+            this.btnDeleteCate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteCate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteCate.ForeColor = System.Drawing.Color.Blue;
+            this.btnDeleteCate.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteCate.Image")));
+            this.btnDeleteCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteCate.Location = new System.Drawing.Point(331, 389);
+            this.btnDeleteCate.Name = "btnDeleteCate";
+            this.btnDeleteCate.Size = new System.Drawing.Size(142, 63);
+            this.btnDeleteCate.TabIndex = 20;
+            this.btnDeleteCate.Text = "Xoá";
+            this.btnDeleteCate.UseVisualStyleBackColor = false;
+            // 
+            // btnUpdateCate
+            // 
+            this.btnUpdateCate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateCate.BackColor = System.Drawing.Color.Red;
+            this.btnUpdateCate.FlatAppearance.BorderSize = 0;
+            this.btnUpdateCate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateCate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateCate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateCate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCate.Image")));
+            this.btnUpdateCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateCate.Location = new System.Drawing.Point(170, 389);
+            this.btnUpdateCate.Name = "btnUpdateCate";
+            this.btnUpdateCate.Size = new System.Drawing.Size(142, 63);
+            this.btnUpdateCate.TabIndex = 19;
+            this.btnUpdateCate.Text = "Cập Nhật";
+            this.btnUpdateCate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdateCate.UseVisualStyleBackColor = false;
+            // 
+            // btnAddCate
+            // 
+            this.btnAddCate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddCate.BackColor = System.Drawing.Color.Yellow;
+            this.btnAddCate.FlatAppearance.BorderSize = 0;
+            this.btnAddCate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnAddCate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAddCate.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCate.Image")));
+            this.btnAddCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddCate.Location = new System.Drawing.Point(6, 389);
+            this.btnAddCate.Name = "btnAddCate";
+            this.btnAddCate.Size = new System.Drawing.Size(142, 63);
+            this.btnAddCate.TabIndex = 18;
+            this.btnAddCate.Text = "Thêm";
+            this.btnAddCate.UseVisualStyleBackColor = false;
+            // 
+            // lblCategoryParent
+            // 
+            this.lblCategoryParent.AutoSize = true;
+            this.lblCategoryParent.Location = new System.Drawing.Point(2, 80);
+            this.lblCategoryParent.Name = "lblCategoryParent";
+            this.lblCategoryParent.Size = new System.Drawing.Size(80, 13);
+            this.lblCategoryParent.TabIndex = 6;
+            this.lblCategoryParent.Text = "Danh mục cha:";
+            // 
+            // txbCategoryName
+            // 
+            this.txbCategoryName.Location = new System.Drawing.Point(111, 42);
+            this.txbCategoryName.Name = "txbCategoryName";
+            this.txbCategoryName.Size = new System.Drawing.Size(347, 20);
+            this.txbCategoryName.TabIndex = 3;
+            // 
+            // lblCategoryName
+            // 
+            this.lblCategoryName.AutoSize = true;
+            this.lblCategoryName.Location = new System.Drawing.Point(3, 45);
+            this.lblCategoryName.Name = "lblCategoryName";
+            this.lblCategoryName.Size = new System.Drawing.Size(79, 13);
+            this.lblCategoryName.TabIndex = 2;
+            this.lblCategoryName.Text = "Tên danh mục:";
+            // 
+            // txbCategoryID
+            // 
+            this.txbCategoryID.Location = new System.Drawing.Point(111, 6);
+            this.txbCategoryID.Name = "txbCategoryID";
+            this.txbCategoryID.ReadOnly = true;
+            this.txbCategoryID.Size = new System.Drawing.Size(347, 20);
+            this.txbCategoryID.TabIndex = 1;
+            // 
+            // lblCategoryID
+            // 
+            this.lblCategoryID.AutoSize = true;
+            this.lblCategoryID.Location = new System.Drawing.Point(3, 9);
+            this.lblCategoryID.Name = "lblCategoryID";
+            this.lblCategoryID.Size = new System.Drawing.Size(75, 13);
+            this.lblCategoryID.TabIndex = 0;
+            this.lblCategoryID.Text = "Mã danh mục:";
+            this.lblCategoryID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvCategory
+            // 
+            this.dgvCategory.AllowUserToAddRows = false;
+            this.dgvCategory.AllowUserToDeleteRows = false;
+            this.dgvCategory.AllowUserToOrderColumns = true;
+            this.dgvCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategory.Location = new System.Drawing.Point(0, 0);
+            this.dgvCategory.Name = "dgvCategory";
+            this.dgvCategory.ReadOnly = true;
+            this.dgvCategory.Size = new System.Drawing.Size(508, 457);
+            this.dgvCategory.TabIndex = 1;
+            // 
             // tpCourse
             // 
+            this.tpCourse.Controls.Add(this.panel2);
+            this.tpCourse.Controls.Add(this.dgvCourse);
             this.tpCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.tpCourse.Location = new System.Drawing.Point(4, 47);
             this.tpCourse.Name = "tpCourse";
@@ -415,6 +563,207 @@
             this.tpCourse.Text = "MÔN HỌC";
             this.tpCourse.ToolTipText = "Quản lý các môn học";
             this.tpCourse.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.txbDateModifierCourse);
+            this.panel2.Controls.Add(this.lblDateModifierCourse);
+            this.panel2.Controls.Add(this.txbDateCreatedCourse);
+            this.panel2.Controls.Add(this.lblDateCreatedCourse);
+            this.panel2.Controls.Add(this.btnChooseImage);
+            this.panel2.Controls.Add(this.lblImageCourse);
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.cbCateID);
+            this.panel2.Controls.Add(this.btnDeleteCourse);
+            this.panel2.Controls.Add(this.btnUpdateCourse);
+            this.panel2.Controls.Add(this.btnAddCourse);
+            this.panel2.Controls.Add(this.lblCateID);
+            this.panel2.Controls.Add(this.txbCourseName);
+            this.panel2.Controls.Add(this.lblCourseName);
+            this.panel2.Controls.Add(this.txbCourseID);
+            this.panel2.Controls.Add(this.lblCourseID);
+            this.panel2.Location = new System.Drawing.Point(508, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(476, 457);
+            this.panel2.TabIndex = 3;
+            // 
+            // txbDateCreatedCourse
+            // 
+            this.txbDateCreatedCourse.Location = new System.Drawing.Point(111, 248);
+            this.txbDateCreatedCourse.Name = "txbDateCreatedCourse";
+            this.txbDateCreatedCourse.ReadOnly = true;
+            this.txbDateCreatedCourse.Size = new System.Drawing.Size(347, 20);
+            this.txbDateCreatedCourse.TabIndex = 27;
+            // 
+            // lblDateCreatedCourse
+            // 
+            this.lblDateCreatedCourse.AutoSize = true;
+            this.lblDateCreatedCourse.Location = new System.Drawing.Point(6, 251);
+            this.lblDateCreatedCourse.Name = "lblDateCreatedCourse";
+            this.lblDateCreatedCourse.Size = new System.Drawing.Size(61, 13);
+            this.lblDateCreatedCourse.TabIndex = 26;
+            this.lblDateCreatedCourse.Text = "Ngày thêm:";
+            // 
+            // btnChooseImage
+            // 
+            this.btnChooseImage.Location = new System.Drawing.Point(111, 198);
+            this.btnChooseImage.Name = "btnChooseImage";
+            this.btnChooseImage.Size = new System.Drawing.Size(86, 39);
+            this.btnChooseImage.TabIndex = 25;
+            this.btnChooseImage.Text = "Chọn Ảnh";
+            this.btnChooseImage.UseVisualStyleBackColor = true;
+            this.btnChooseImage.Click += new System.EventHandler(this.BtnChooseImageClicked);
+            // 
+            // lblImageCourse
+            // 
+            this.lblImageCourse.AutoSize = true;
+            this.lblImageCourse.Location = new System.Drawing.Point(6, 211);
+            this.lblImageCourse.Name = "lblImageCourse";
+            this.lblImageCourse.Size = new System.Drawing.Size(73, 13);
+            this.lblImageCourse.TabIndex = 24;
+            this.lblImageCourse.Text = "Ảnh môn học:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(111, 114);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(347, 74);
+            this.textBox3.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 114);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Mô tả môn học:";
+            // 
+            // cbCateID
+            // 
+            this.cbCateID.FormattingEnabled = true;
+            this.cbCateID.Location = new System.Drawing.Point(111, 77);
+            this.cbCateID.Name = "cbCateID";
+            this.cbCateID.Size = new System.Drawing.Size(347, 21);
+            this.cbCateID.TabIndex = 21;
+            // 
+            // btnDeleteCourse
+            // 
+            this.btnDeleteCourse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteCourse.BackColor = System.Drawing.Color.Lime;
+            this.btnDeleteCourse.FlatAppearance.BorderSize = 0;
+            this.btnDeleteCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteCourse.ForeColor = System.Drawing.Color.Blue;
+            this.btnDeleteCourse.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteCourse.Image")));
+            this.btnDeleteCourse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteCourse.Location = new System.Drawing.Point(331, 389);
+            this.btnDeleteCourse.Name = "btnDeleteCourse";
+            this.btnDeleteCourse.Size = new System.Drawing.Size(142, 63);
+            this.btnDeleteCourse.TabIndex = 20;
+            this.btnDeleteCourse.Text = "Xoá";
+            this.btnDeleteCourse.UseVisualStyleBackColor = false;
+            // 
+            // btnUpdateCourse
+            // 
+            this.btnUpdateCourse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateCourse.BackColor = System.Drawing.Color.Red;
+            this.btnUpdateCourse.FlatAppearance.BorderSize = 0;
+            this.btnUpdateCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateCourse.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateCourse.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCourse.Image")));
+            this.btnUpdateCourse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateCourse.Location = new System.Drawing.Point(170, 389);
+            this.btnUpdateCourse.Name = "btnUpdateCourse";
+            this.btnUpdateCourse.Size = new System.Drawing.Size(142, 63);
+            this.btnUpdateCourse.TabIndex = 19;
+            this.btnUpdateCourse.Text = "Cập Nhật";
+            this.btnUpdateCourse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdateCourse.UseVisualStyleBackColor = false;
+            // 
+            // btnAddCourse
+            // 
+            this.btnAddCourse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddCourse.BackColor = System.Drawing.Color.Yellow;
+            this.btnAddCourse.FlatAppearance.BorderSize = 0;
+            this.btnAddCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnAddCourse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAddCourse.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCourse.Image")));
+            this.btnAddCourse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddCourse.Location = new System.Drawing.Point(6, 389);
+            this.btnAddCourse.Name = "btnAddCourse";
+            this.btnAddCourse.Size = new System.Drawing.Size(142, 63);
+            this.btnAddCourse.TabIndex = 18;
+            this.btnAddCourse.Text = "Thêm";
+            this.btnAddCourse.UseVisualStyleBackColor = false;
+            // 
+            // lblCateID
+            // 
+            this.lblCateID.AutoSize = true;
+            this.lblCateID.Location = new System.Drawing.Point(2, 80);
+            this.lblCateID.Name = "lblCateID";
+            this.lblCateID.Size = new System.Drawing.Size(75, 13);
+            this.lblCateID.TabIndex = 6;
+            this.lblCateID.Text = "Mã danh mục:";
+            // 
+            // txbCourseName
+            // 
+            this.txbCourseName.Location = new System.Drawing.Point(111, 42);
+            this.txbCourseName.Name = "txbCourseName";
+            this.txbCourseName.Size = new System.Drawing.Size(347, 20);
+            this.txbCourseName.TabIndex = 3;
+            // 
+            // lblCourseName
+            // 
+            this.lblCourseName.AutoSize = true;
+            this.lblCourseName.Location = new System.Drawing.Point(3, 45);
+            this.lblCourseName.Name = "lblCourseName";
+            this.lblCourseName.Size = new System.Drawing.Size(73, 13);
+            this.lblCourseName.TabIndex = 2;
+            this.lblCourseName.Text = "Tên môn học:";
+            // 
+            // txbCourseID
+            // 
+            this.txbCourseID.Location = new System.Drawing.Point(111, 6);
+            this.txbCourseID.Name = "txbCourseID";
+            this.txbCourseID.ReadOnly = true;
+            this.txbCourseID.Size = new System.Drawing.Size(347, 20);
+            this.txbCourseID.TabIndex = 1;
+            // 
+            // lblCourseID
+            // 
+            this.lblCourseID.AutoSize = true;
+            this.lblCourseID.Location = new System.Drawing.Point(3, 9);
+            this.lblCourseID.Name = "lblCourseID";
+            this.lblCourseID.Size = new System.Drawing.Size(69, 13);
+            this.lblCourseID.TabIndex = 0;
+            this.lblCourseID.Text = "Mã môn học:";
+            this.lblCourseID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvCourse
+            // 
+            this.dgvCourse.AllowUserToAddRows = false;
+            this.dgvCourse.AllowUserToDeleteRows = false;
+            this.dgvCourse.AllowUserToOrderColumns = true;
+            this.dgvCourse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvCourse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCourse.Location = new System.Drawing.Point(0, 0);
+            this.dgvCourse.Name = "dgvCourse";
+            this.dgvCourse.ReadOnly = true;
+            this.dgvCourse.Size = new System.Drawing.Size(508, 457);
+            this.dgvCourse.TabIndex = 2;
             // 
             // tpClassroom
             // 
@@ -451,191 +800,26 @@
             this.iList.Images.SetKeyName(6, "delete.png");
             this.iList.Images.SetKeyName(7, "update.png");
             // 
-            // dgvCategory
+            // lblDateModifierCourse
             // 
-            this.dgvCategory.AllowUserToAddRows = false;
-            this.dgvCategory.AllowUserToDeleteRows = false;
-            this.dgvCategory.AllowUserToOrderColumns = true;
-            this.dgvCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategory.Location = new System.Drawing.Point(0, 0);
-            this.dgvCategory.Name = "dgvCategory";
-            this.dgvCategory.ReadOnly = true;
-            this.dgvCategory.Size = new System.Drawing.Size(508, 457);
-            this.dgvCategory.TabIndex = 1;
+            this.lblDateModifierCourse.AutoSize = true;
+            this.lblDateModifierCourse.Location = new System.Drawing.Point(6, 287);
+            this.lblDateModifierCourse.Name = "lblDateModifierCourse";
+            this.lblDateModifierCourse.Size = new System.Drawing.Size(102, 13);
+            this.lblDateModifierCourse.TabIndex = 28;
+            this.lblDateModifierCourse.Text = "Chỉnh sửa gần nhất:";
             // 
-            // dgvUsersPerID
+            // txbDateModifierCourse
             // 
-            this.dgvUsersPerID.DataPropertyName = "PerID";
-            this.dgvUsersPerID.HeaderText = "PerID";
-            this.dgvUsersPerID.Name = "dgvUsersPerID";
-            this.dgvUsersPerID.ReadOnly = true;
+            this.txbDateModifierCourse.Location = new System.Drawing.Point(111, 284);
+            this.txbDateModifierCourse.Name = "txbDateModifierCourse";
+            this.txbDateModifierCourse.ReadOnly = true;
+            this.txbDateModifierCourse.Size = new System.Drawing.Size(347, 20);
+            this.txbDateModifierCourse.TabIndex = 29;
             // 
-            // perNameDataGridViewTextBoxColumn
+            // ofdFileImage
             // 
-            this.perNameDataGridViewTextBoxColumn.DataPropertyName = "PerName";
-            this.perNameDataGridViewTextBoxColumn.HeaderText = "PerName";
-            this.perNameDataGridViewTextBoxColumn.Name = "perNameDataGridViewTextBoxColumn";
-            this.perNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // roleDataGridViewTextBoxColumn
-            // 
-            this.roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
-            this.roleDataGridViewTextBoxColumn.HeaderText = "Role";
-            this.roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
-            this.roleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // personDTOBindingSource
-            // 
-            this.personDTOBindingSource.DataSource = typeof(CourseManagementDesktopApp.Models.PersonDTO);
-            // 
-            // lblCategoryID
-            // 
-            this.lblCategoryID.AutoSize = true;
-            this.lblCategoryID.Location = new System.Drawing.Point(3, 9);
-            this.lblCategoryID.Name = "lblCategoryID";
-            this.lblCategoryID.Size = new System.Drawing.Size(75, 13);
-            this.lblCategoryID.TabIndex = 0;
-            this.lblCategoryID.Text = "Mã danh mục:";
-            this.lblCategoryID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txbCategoryID
-            // 
-            this.txbCategoryID.Location = new System.Drawing.Point(111, 6);
-            this.txbCategoryID.Name = "txbCategoryID";
-            this.txbCategoryID.ReadOnly = true;
-            this.txbCategoryID.Size = new System.Drawing.Size(347, 20);
-            this.txbCategoryID.TabIndex = 1;
-            // 
-            // lblCategoryName
-            // 
-            this.lblCategoryName.AutoSize = true;
-            this.lblCategoryName.Location = new System.Drawing.Point(3, 45);
-            this.lblCategoryName.Name = "lblCategoryName";
-            this.lblCategoryName.Size = new System.Drawing.Size(79, 13);
-            this.lblCategoryName.TabIndex = 2;
-            this.lblCategoryName.Text = "Tên danh mục:";
-            // 
-            // txbCategoryName
-            // 
-            this.txbCategoryName.Location = new System.Drawing.Point(111, 42);
-            this.txbCategoryName.Name = "txbCategoryName";
-            this.txbCategoryName.Size = new System.Drawing.Size(347, 20);
-            this.txbCategoryName.TabIndex = 3;
-            // 
-            // lblCategoryParent
-            // 
-            this.lblCategoryParent.AutoSize = true;
-            this.lblCategoryParent.Location = new System.Drawing.Point(2, 80);
-            this.lblCategoryParent.Name = "lblCategoryParent";
-            this.lblCategoryParent.Size = new System.Drawing.Size(80, 13);
-            this.lblCategoryParent.TabIndex = 6;
-            this.lblCategoryParent.Text = "Danh mục cha:";
-            // 
-            // btnAddCate
-            // 
-            this.btnAddCate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddCate.BackColor = System.Drawing.Color.Yellow;
-            this.btnAddCate.FlatAppearance.BorderSize = 0;
-            this.btnAddCate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnAddCate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnAddCate.Image = ((System.Drawing.Image)(resources.GetObject("btnAddCate.Image")));
-            this.btnAddCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddCate.Location = new System.Drawing.Point(6, 389);
-            this.btnAddCate.Name = "btnAddCate";
-            this.btnAddCate.Size = new System.Drawing.Size(142, 63);
-            this.btnAddCate.TabIndex = 18;
-            this.btnAddCate.Text = "Thêm";
-            this.btnAddCate.UseVisualStyleBackColor = false;
-            // 
-            // btnUpdateCate
-            // 
-            this.btnUpdateCate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateCate.BackColor = System.Drawing.Color.Red;
-            this.btnUpdateCate.FlatAppearance.BorderSize = 0;
-            this.btnUpdateCate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateCate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnUpdateCate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateCate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateCate.Image")));
-            this.btnUpdateCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateCate.Location = new System.Drawing.Point(170, 389);
-            this.btnUpdateCate.Name = "btnUpdateCate";
-            this.btnUpdateCate.Size = new System.Drawing.Size(142, 63);
-            this.btnUpdateCate.TabIndex = 19;
-            this.btnUpdateCate.Text = "Cập Nhật";
-            this.btnUpdateCate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdateCate.UseVisualStyleBackColor = false;
-            // 
-            // btnDeleteCate
-            // 
-            this.btnDeleteCate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteCate.BackColor = System.Drawing.Color.Lime;
-            this.btnDeleteCate.FlatAppearance.BorderSize = 0;
-            this.btnDeleteCate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteCate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnDeleteCate.ForeColor = System.Drawing.Color.Blue;
-            this.btnDeleteCate.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteCate.Image")));
-            this.btnDeleteCate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteCate.Location = new System.Drawing.Point(331, 389);
-            this.btnDeleteCate.Name = "btnDeleteCate";
-            this.btnDeleteCate.Size = new System.Drawing.Size(142, 63);
-            this.btnDeleteCate.TabIndex = 20;
-            this.btnDeleteCate.Text = "Xoá";
-            this.btnDeleteCate.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.cbCategoryParent);
-            this.panel1.Controls.Add(this.btnDeleteCate);
-            this.panel1.Controls.Add(this.btnUpdateCate);
-            this.panel1.Controls.Add(this.btnAddCate);
-            this.panel1.Controls.Add(this.lblCategoryParent);
-            this.panel1.Controls.Add(this.txbCategoryName);
-            this.panel1.Controls.Add(this.lblCategoryName);
-            this.panel1.Controls.Add(this.txbCategoryID);
-            this.panel1.Controls.Add(this.lblCategoryID);
-            this.panel1.Location = new System.Drawing.Point(508, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(476, 457);
-            this.panel1.TabIndex = 2;
-            // 
-            // cbCategoryParent
-            // 
-            this.cbCategoryParent.FormattingEnabled = true;
-            this.cbCategoryParent.Location = new System.Drawing.Point(111, 77);
-            this.cbCategoryParent.Name = "cbCategoryParent";
-            this.cbCategoryParent.Size = new System.Drawing.Size(347, 21);
-            this.cbCategoryParent.TabIndex = 21;
+            this.ofdFileImage.Title = "Chọn ảnh";
             // 
             // FDashBoard
             // 
@@ -653,10 +837,13 @@
             this.pnUsersControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.tpCategory.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personDTOBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
+            this.tpCourse.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCourse)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -671,13 +858,6 @@
         private System.Windows.Forms.TabPage tpStatistic;
         private System.Windows.Forms.ImageList iList;
         private System.Windows.Forms.DataGridView dgvUsers;
-        private System.Windows.Forms.BindingSource personDTOBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvUsersPerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn perNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel pnUsersControl;
         private System.Windows.Forms.Label lblPerID;
         private System.Windows.Forms.Label lblEmail;
@@ -711,5 +891,25 @@
         private System.Windows.Forms.TextBox txbCategoryID;
         private System.Windows.Forms.Label lblCategoryID;
         private System.Windows.Forms.ComboBox cbCategoryParent;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cbCateID;
+        private System.Windows.Forms.Button btnDeleteCourse;
+        private System.Windows.Forms.Button btnUpdateCourse;
+        private System.Windows.Forms.Button btnAddCourse;
+        private System.Windows.Forms.Label lblCateID;
+        private System.Windows.Forms.TextBox txbCourseName;
+        private System.Windows.Forms.Label lblCourseName;
+        private System.Windows.Forms.TextBox txbCourseID;
+        private System.Windows.Forms.Label lblCourseID;
+        private System.Windows.Forms.DataGridView dgvCourse;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txbDateCreatedCourse;
+        private System.Windows.Forms.Label lblDateCreatedCourse;
+        private System.Windows.Forms.Button btnChooseImage;
+        private System.Windows.Forms.Label lblImageCourse;
+        private System.Windows.Forms.TextBox txbDateModifierCourse;
+        private System.Windows.Forms.Label lblDateModifierCourse;
+        private System.Windows.Forms.OpenFileDialog ofdFileImage;
     }
 }

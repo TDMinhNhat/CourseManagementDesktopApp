@@ -29,24 +29,28 @@ namespace CourseManagementDesktopApp
 
             Bitmap mapBtnAdd = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnAddPerson.Image"))), new Size(40, 40));
             btnAddPerson.Image = (Image)mapBtnAdd;
-
             Bitmap mapBtnUpdate = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnUpdate.Image"))), new Size(40, 40));
             btnUpdate.Image = (Image)mapBtnUpdate;
-
             Bitmap mapBtnDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDelete.Image"))), new Size(40, 40));
             btnDelete.Image = (Image)mapBtnDelete;
 
             Bitmap mapBtnCategoryAdd = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnAddCate.Image"))), new Size(40, 40));
-            btnAddCate.Image = (Image)mapBtnAdd;
-
+            btnAddCate.Image = (Image)mapBtnCategoryAdd;
             Bitmap mapBtnCategoryUpdate = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnUpdateCate.Image"))), new Size(40, 40));
-            btnUpdateCate.Image = (Image)mapBtnUpdate;
-
+            btnUpdateCate.Image = (Image)mapBtnCategoryUpdate;
             Bitmap mapBtnCategoryDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDeleteCate.Image"))), new Size(40, 40));
-            btnDeleteCate.Image = (Image)mapBtnDelete;
+            btnDeleteCate.Image = (Image)mapBtnCategoryDelete;
+
+            Bitmap mapBtnCourseAdd = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnAddCourse.Image"))), new Size(40, 40));
+            btnAddCourse.Image = (Image)mapBtnCourseAdd;
+            Bitmap mapBtnCourseUpdate = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnUpdateCourse.Image"))), new Size(40, 40));
+            btnUpdateCourse.Image = (Image)mapBtnCourseUpdate;
+            Bitmap mapBtnCourseDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDeleteCourse.Image"))), new Size(40, 40));
+            btnDeleteCourse.Image = (Image)mapBtnCourseDelete;
 
             LoadDataUsersDGV();
             LoadDataCategoryDGV();
+            LoadDataCourseDGV();
         }
 
         private void LoadDataUsersDGV()
@@ -89,9 +93,36 @@ namespace CourseManagementDesktopApp
             }
         }
 
+        private void LoadDataCourseDGV()
+        {
+            using(CourseManagementEntities entities = new CourseManagementEntities())
+            {
+                List<CourseDTO> courseDTOs = new List<CourseDTO>();
+                foreach (var course in entities.Courses)
+                {
+                    courseDTOs.Add(new CourseDTO()
+                    {
+                        CourseID = course.CourseID,
+                        CourseName = course.CourseName,
+                        CourseDescription = course.CourseDescription,
+                        CateID = course.CourseID
+                    });
+                }
+                dgvCourse.DataSource = courseDTOs;
+            }
+        }
+
         private void FCDashBoardEvent(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void BtnChooseImageClicked(object sender, EventArgs e)
+        {
+            if(ofdFileImage.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = ofdFileImage.FileName;
+            }
         }
     }
 }
