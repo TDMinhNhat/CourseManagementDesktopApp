@@ -48,9 +48,17 @@ namespace CourseManagementDesktopApp
             Bitmap mapBtnCourseDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDeleteCourse.Image"))), new Size(40, 40));
             btnDeleteCourse.Image = (Image)mapBtnCourseDelete;
 
+            Bitmap mapBtnClassroomAdd = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnAddClassroom.Image"))), new Size(40, 40));
+            btnAddClassroom.Image = (Image)mapBtnClassroomAdd;
+            Bitmap mapBtnClassroomUpdate = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnUpdateClassroom.Image"))), new Size(40, 40));
+            btnUpdateClassroom.Image = (Image)mapBtnClassroomUpdate;
+            Bitmap mapBtnClassroomDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDeleteClassroom.Image"))), new Size(40, 40));
+            btnDeleteClassroom.Image = (Image)mapBtnClassroomDelete;
+
             LoadDataUsersDGV();
             LoadDataCategoryDGV();
             LoadDataCourseDGV();
+            LoadDataClassroomDGV();
         }
 
         private void LoadDataUsersDGV()
@@ -86,7 +94,7 @@ namespace CourseManagementDesktopApp
                     {
                         CateID = category.CateID,
                         CateName = category.CateName,
-                        CateParent = category.CateParent
+                        CateParent = category.CateParent == null ? null : category.CateParent + " - " + entities.Categories.FirstOrDefault(c => c.CateID.Equals(category.CateID)).CateName
                     });
                 }
                 dgvCategory.DataSource = categoryDTOs;
@@ -105,10 +113,30 @@ namespace CourseManagementDesktopApp
                         CourseID = course.CourseID,
                         CourseName = course.CourseName,
                         CourseDescription = course.CourseDescription,
-                        CateID = course.CourseID
+                        CateID = course.CourseID + " - " + entities.Categories.FirstOrDefault(c => c.CateID.Equals(course.CateID)).CateName
                     });
                 }
                 dgvCourse.DataSource = courseDTOs;
+            }
+        }
+
+        private void LoadDataClassroomDGV() {
+            using(CourseManagementEntities entities = new CourseManagementEntities())
+            {
+                List<ClassroomDTO> classroomDTOs = new List<ClassroomDTO>();
+                foreach (var classroom in entities.ClassRooms)
+                {
+                    classroomDTOs.Add(new ClassroomDTO()
+                    {
+                        ClassID = classroom.ClassID,
+                        TypeStudy = classroom.TypeStudy,
+                        DateStarted = classroom.DateStarted,
+                        DateEnded = classroom.DateEnded,
+                        TeacherID = classroom.TeacherID + " - " + entities.People.FirstOrDefault(p => p.PerID.Equals(classroom.TeacherID)).PerName,
+                        CourseID = classroom.CourseID + " - " + entities.Courses.FirstOrDefault(c => c.CourseID.Equals(classroom.CourseID)).CourseName,
+                        MaxStudent = classroom.MaxStudent
+                    });
+                }
             }
         }
 
