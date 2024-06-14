@@ -1,5 +1,6 @@
 ﻿using CourseManagementDesktopApp.Models;
 using CourseManagementDesktopApp.Properties;
+using CourseManagementDTO;
 using CourseManagementModel;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,17 @@ namespace CourseManagementDesktopApp
             Bitmap mapBtnDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDelete.Image"))), new Size(40, 40));
             btnDelete.Image = (Image)mapBtnDelete;
 
+            Bitmap mapBtnCategoryAdd = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnAddCate.Image"))), new Size(40, 40));
+            btnAddCate.Image = (Image)mapBtnAdd;
+
+            Bitmap mapBtnCategoryUpdate = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnUpdateCate.Image"))), new Size(40, 40));
+            btnUpdateCate.Image = (Image)mapBtnUpdate;
+
+            Bitmap mapBtnCategoryDelete = new Bitmap(((System.Drawing.Image)(resources.GetObject("btnDeleteCate.Image"))), new Size(40, 40));
+            btnDeleteCate.Image = (Image)mapBtnDelete;
+
             LoadDataUsersDGV();
+            LoadDataCategoryDGV();
         }
 
         private void LoadDataUsersDGV()
@@ -57,6 +68,24 @@ namespace CourseManagementDesktopApp
                 }
 
                 dgvUsers.DataSource = personDTOs;
+            }
+        }
+
+        private void LoadDataCategoryDGV()
+        {
+            using(CourseManagementEntities entities = new CourseManagementEntities())
+            {
+                List<CategoryDTO> categoryDTOs = new List<CategoryDTO>();
+                foreach (var category in entities.Categories)
+                {
+                    categoryDTOs.Add(new CategoryDTO()
+                    {
+                        CateID = category.CateID,
+                        CateName = category.CateName,
+                        CateParent = category.CateParent
+                    });
+                }
+                dgvCategory.DataSource = categoryDTOs;
             }
         }
 
