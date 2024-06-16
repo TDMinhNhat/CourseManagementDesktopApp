@@ -69,6 +69,8 @@
             this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.tpCourse = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txbDateModifierCourse = new System.Windows.Forms.TextBox();
+            this.lblDateModifierCourse = new System.Windows.Forms.Label();
             this.txbDateCreatedCourse = new System.Windows.Forms.TextBox();
             this.lblDateCreatedCourse = new System.Windows.Forms.Label();
             this.btnChooseImage = new System.Windows.Forms.Button();
@@ -86,32 +88,31 @@
             this.lblCourseID = new System.Windows.Forms.Label();
             this.dgvCourse = new System.Windows.Forms.DataGridView();
             this.tpClassroom = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.txbClassDescription = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpDateEnded = new System.Windows.Forms.DateTimePicker();
+            this.lblDateEnded = new System.Windows.Forms.Label();
+            this.dtpDateStarted = new System.Windows.Forms.DateTimePicker();
+            this.lblDateStarted = new System.Windows.Forms.Label();
+            this.lblTypeStudy = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbTeacherID = new System.Windows.Forms.ComboBox();
+            this.lblTeacherChoose = new System.Windows.Forms.Label();
+            this.cbCourseID = new System.Windows.Forms.ComboBox();
+            this.lblCourseChoose = new System.Windows.Forms.Label();
+            this.btnDeleteClassroom = new System.Windows.Forms.Button();
+            this.btnUpdateClassroom = new System.Windows.Forms.Button();
+            this.btnAddClassroom = new System.Windows.Forms.Button();
+            this.txbMaxStudent = new System.Windows.Forms.TextBox();
+            this.lblMaxStudent = new System.Windows.Forms.Label();
+            this.txbClassroomID = new System.Windows.Forms.TextBox();
+            this.lblClassroomID = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tpStatistic = new System.Windows.Forms.TabPage();
             this.iList = new System.Windows.Forms.ImageList(this.components);
-            this.lblDateModifierCourse = new System.Windows.Forms.Label();
-            this.txbDateModifierCourse = new System.Windows.Forms.TextBox();
             this.ofdFileImage = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblClassroomID = new System.Windows.Forms.Label();
-            this.txbClassroomID = new System.Windows.Forms.TextBox();
-            this.lblMaxStudent = new System.Windows.Forms.Label();
-            this.txbMaxStudent = new System.Windows.Forms.TextBox();
-            this.btnAddClassroom = new System.Windows.Forms.Button();
-            this.btnUpdateClassroom = new System.Windows.Forms.Button();
-            this.btnDeleteClassroom = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblCourseChoose = new System.Windows.Forms.Label();
-            this.cbCourseID = new System.Windows.Forms.ComboBox();
-            this.lblTeacherChoose = new System.Windows.Forms.Label();
-            this.cbTeacherID = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lblTypeStudy = new System.Windows.Forms.Label();
-            this.lblDateStarted = new System.Windows.Forms.Label();
-            this.dtpDateStarted = new System.Windows.Forms.DateTimePicker();
-            this.lblDateEnded = new System.Windows.Forms.Label();
-            this.dtpDateEnded = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txbClassDescription = new System.Windows.Forms.TextBox();
+            this.niDashboard = new System.Windows.Forms.NotifyIcon(this.components);
             this.tbDashboard.SuspendLayout();
             this.tpUsers.SuspendLayout();
             this.pnUsersControl.SuspendLayout();
@@ -123,8 +124,8 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourse)).BeginInit();
             this.tpClassroom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDashboard
@@ -454,6 +455,7 @@
             // 
             // cbCategoryParent
             // 
+            this.cbCategoryParent.Enabled = false;
             this.cbCategoryParent.FormattingEnabled = true;
             this.cbCategoryParent.Location = new System.Drawing.Point(111, 77);
             this.cbCategoryParent.Name = "cbCategoryParent";
@@ -477,6 +479,7 @@
             this.btnDeleteCate.TabIndex = 20;
             this.btnDeleteCate.Text = "Xoá";
             this.btnDeleteCate.UseVisualStyleBackColor = false;
+            this.btnDeleteCate.Click += new System.EventHandler(this.BtnDeleteCategoryClicked);
             // 
             // btnUpdateCate
             // 
@@ -496,6 +499,7 @@
             this.btnUpdateCate.Text = "Cập Nhật";
             this.btnUpdateCate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdateCate.UseVisualStyleBackColor = false;
+            this.btnUpdateCate.Click += new System.EventHandler(this.BtnUpdateCategoryClicked);
             // 
             // btnAddCate
             // 
@@ -514,6 +518,7 @@
             this.btnAddCate.TabIndex = 18;
             this.btnAddCate.Text = "Thêm";
             this.btnAddCate.UseVisualStyleBackColor = false;
+            this.btnAddCate.Click += new System.EventHandler(this.BtnAddCategoryClicked);
             // 
             // lblCategoryParent
             // 
@@ -528,6 +533,7 @@
             // 
             this.txbCategoryName.Location = new System.Drawing.Point(111, 42);
             this.txbCategoryName.Name = "txbCategoryName";
+            this.txbCategoryName.ReadOnly = true;
             this.txbCategoryName.Size = new System.Drawing.Size(347, 20);
             this.txbCategoryName.TabIndex = 3;
             // 
@@ -569,10 +575,12 @@
             this.dgvCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategory.Location = new System.Drawing.Point(0, 0);
+            this.dgvCategory.MultiSelect = false;
             this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.ReadOnly = true;
             this.dgvCategory.Size = new System.Drawing.Size(508, 457);
             this.dgvCategory.TabIndex = 1;
+            this.dgvCategory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellCategoryClickEvent);
             // 
             // tpCourse
             // 
@@ -613,6 +621,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(476, 457);
             this.panel2.TabIndex = 3;
+            // 
+            // txbDateModifierCourse
+            // 
+            this.txbDateModifierCourse.Location = new System.Drawing.Point(111, 284);
+            this.txbDateModifierCourse.Name = "txbDateModifierCourse";
+            this.txbDateModifierCourse.ReadOnly = true;
+            this.txbDateModifierCourse.Size = new System.Drawing.Size(347, 20);
+            this.txbDateModifierCourse.TabIndex = 29;
+            // 
+            // lblDateModifierCourse
+            // 
+            this.lblDateModifierCourse.AutoSize = true;
+            this.lblDateModifierCourse.Location = new System.Drawing.Point(6, 287);
+            this.lblDateModifierCourse.Name = "lblDateModifierCourse";
+            this.lblDateModifierCourse.Size = new System.Drawing.Size(102, 13);
+            this.lblDateModifierCourse.TabIndex = 28;
+            this.lblDateModifierCourse.Text = "Chỉnh sửa gần nhất:";
             // 
             // txbDateCreatedCourse
             // 
@@ -802,156 +827,6 @@
             this.tpClassroom.ToolTipText = "Quản lý các khoá học, mở lớp học theo định kỳ";
             this.tpClassroom.UseVisualStyleBackColor = true;
             // 
-            // tpStatistic
-            // 
-            this.tpStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.tpStatistic.Location = new System.Drawing.Point(4, 47);
-            this.tpStatistic.Name = "tpStatistic";
-            this.tpStatistic.Size = new System.Drawing.Size(984, 457);
-            this.tpStatistic.TabIndex = 4;
-            this.tpStatistic.Text = "THỐNG KÊ";
-            this.tpStatistic.ToolTipText = "Thống kê mọi sự hoạt động";
-            this.tpStatistic.UseVisualStyleBackColor = true;
-            // 
-            // iList
-            // 
-            this.iList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iList.ImageStream")));
-            this.iList.TransparentColor = System.Drawing.Color.Transparent;
-            this.iList.Images.SetKeyName(0, "users.png");
-            this.iList.Images.SetKeyName(1, "categories.png");
-            this.iList.Images.SetKeyName(2, "courses.png");
-            this.iList.Images.SetKeyName(3, "scheduled.png");
-            this.iList.Images.SetKeyName(4, "satistics.png");
-            this.iList.Images.SetKeyName(5, "add.png");
-            this.iList.Images.SetKeyName(6, "delete.png");
-            this.iList.Images.SetKeyName(7, "update.png");
-            // 
-            // lblDateModifierCourse
-            // 
-            this.lblDateModifierCourse.AutoSize = true;
-            this.lblDateModifierCourse.Location = new System.Drawing.Point(6, 287);
-            this.lblDateModifierCourse.Name = "lblDateModifierCourse";
-            this.lblDateModifierCourse.Size = new System.Drawing.Size(102, 13);
-            this.lblDateModifierCourse.TabIndex = 28;
-            this.lblDateModifierCourse.Text = "Chỉnh sửa gần nhất:";
-            // 
-            // txbDateModifierCourse
-            // 
-            this.txbDateModifierCourse.Location = new System.Drawing.Point(111, 284);
-            this.txbDateModifierCourse.Name = "txbDateModifierCourse";
-            this.txbDateModifierCourse.ReadOnly = true;
-            this.txbDateModifierCourse.Size = new System.Drawing.Size(347, 20);
-            this.txbDateModifierCourse.TabIndex = 29;
-            // 
-            // ofdFileImage
-            // 
-            this.ofdFileImage.Title = "Chọn ảnh";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(508, 457);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // lblClassroomID
-            // 
-            this.lblClassroomID.AutoSize = true;
-            this.lblClassroomID.Location = new System.Drawing.Point(3, 9);
-            this.lblClassroomID.Name = "lblClassroomID";
-            this.lblClassroomID.Size = new System.Drawing.Size(63, 13);
-            this.lblClassroomID.TabIndex = 0;
-            this.lblClassroomID.Text = "Mã lớp học:";
-            this.lblClassroomID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txbClassroomID
-            // 
-            this.txbClassroomID.Location = new System.Drawing.Point(111, 6);
-            this.txbClassroomID.Name = "txbClassroomID";
-            this.txbClassroomID.ReadOnly = true;
-            this.txbClassroomID.Size = new System.Drawing.Size(347, 20);
-            this.txbClassroomID.TabIndex = 1;
-            // 
-            // lblMaxStudent
-            // 
-            this.lblMaxStudent.AutoSize = true;
-            this.lblMaxStudent.Location = new System.Drawing.Point(3, 45);
-            this.lblMaxStudent.Name = "lblMaxStudent";
-            this.lblMaxStudent.Size = new System.Drawing.Size(66, 13);
-            this.lblMaxStudent.TabIndex = 2;
-            this.lblMaxStudent.Text = "Sĩ số tối đa:";
-            // 
-            // txbMaxStudent
-            // 
-            this.txbMaxStudent.Location = new System.Drawing.Point(111, 42);
-            this.txbMaxStudent.Name = "txbMaxStudent";
-            this.txbMaxStudent.Size = new System.Drawing.Size(347, 20);
-            this.txbMaxStudent.TabIndex = 3;
-            // 
-            // btnAddClassroom
-            // 
-            this.btnAddClassroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddClassroom.BackColor = System.Drawing.Color.Yellow;
-            this.btnAddClassroom.FlatAppearance.BorderSize = 0;
-            this.btnAddClassroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddClassroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnAddClassroom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnAddClassroom.Image = ((System.Drawing.Image)(resources.GetObject("btnAddClassroom.Image")));
-            this.btnAddClassroom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddClassroom.Location = new System.Drawing.Point(6, 389);
-            this.btnAddClassroom.Name = "btnAddClassroom";
-            this.btnAddClassroom.Size = new System.Drawing.Size(142, 63);
-            this.btnAddClassroom.TabIndex = 18;
-            this.btnAddClassroom.Text = "Thêm";
-            this.btnAddClassroom.UseVisualStyleBackColor = false;
-            // 
-            // btnUpdateClassroom
-            // 
-            this.btnUpdateClassroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateClassroom.BackColor = System.Drawing.Color.Red;
-            this.btnUpdateClassroom.FlatAppearance.BorderSize = 0;
-            this.btnUpdateClassroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateClassroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnUpdateClassroom.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateClassroom.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateClassroom.Image")));
-            this.btnUpdateClassroom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateClassroom.Location = new System.Drawing.Point(170, 389);
-            this.btnUpdateClassroom.Name = "btnUpdateClassroom";
-            this.btnUpdateClassroom.Size = new System.Drawing.Size(142, 63);
-            this.btnUpdateClassroom.TabIndex = 19;
-            this.btnUpdateClassroom.Text = "Cập Nhật";
-            this.btnUpdateClassroom.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdateClassroom.UseVisualStyleBackColor = false;
-            // 
-            // btnDeleteClassroom
-            // 
-            this.btnDeleteClassroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteClassroom.BackColor = System.Drawing.Color.Lime;
-            this.btnDeleteClassroom.FlatAppearance.BorderSize = 0;
-            this.btnDeleteClassroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteClassroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnDeleteClassroom.ForeColor = System.Drawing.Color.Blue;
-            this.btnDeleteClassroom.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteClassroom.Image")));
-            this.btnDeleteClassroom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteClassroom.Location = new System.Drawing.Point(331, 389);
-            this.btnDeleteClassroom.Name = "btnDeleteClassroom";
-            this.btnDeleteClassroom.Size = new System.Drawing.Size(142, 63);
-            this.btnDeleteClassroom.TabIndex = 20;
-            this.btnDeleteClassroom.Text = "Xoá";
-            this.btnDeleteClassroom.UseVisualStyleBackColor = false;
-            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -980,39 +855,63 @@
             this.panel3.Size = new System.Drawing.Size(476, 457);
             this.panel3.TabIndex = 4;
             // 
-            // lblCourseChoose
+            // txbClassDescription
             // 
-            this.lblCourseChoose.AutoSize = true;
-            this.lblCourseChoose.Location = new System.Drawing.Point(3, 80);
-            this.lblCourseChoose.Name = "lblCourseChoose";
-            this.lblCourseChoose.Size = new System.Drawing.Size(73, 13);
-            this.lblCourseChoose.TabIndex = 21;
-            this.lblCourseChoose.Text = "Tên môn học:";
+            this.txbClassDescription.Location = new System.Drawing.Point(111, 255);
+            this.txbClassDescription.Multiline = true;
+            this.txbClassDescription.Name = "txbClassDescription";
+            this.txbClassDescription.Size = new System.Drawing.Size(347, 70);
+            this.txbClassDescription.TabIndex = 32;
             // 
-            // cbCourseID
+            // label2
             // 
-            this.cbCourseID.FormattingEnabled = true;
-            this.cbCourseID.Location = new System.Drawing.Point(111, 77);
-            this.cbCourseID.Name = "cbCourseID";
-            this.cbCourseID.Size = new System.Drawing.Size(347, 21);
-            this.cbCourseID.TabIndex = 22;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 258);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Mô tả lớp học:";
             // 
-            // lblTeacherChoose
+            // dtpDateEnded
             // 
-            this.lblTeacherChoose.AutoSize = true;
-            this.lblTeacherChoose.Location = new System.Drawing.Point(3, 115);
-            this.lblTeacherChoose.Name = "lblTeacherChoose";
-            this.lblTeacherChoose.Size = new System.Drawing.Size(81, 13);
-            this.lblTeacherChoose.TabIndex = 23;
-            this.lblTeacherChoose.Text = "Giảng viên dạy:";
+            this.dtpDateEnded.Location = new System.Drawing.Point(111, 217);
+            this.dtpDateEnded.Name = "dtpDateEnded";
+            this.dtpDateEnded.Size = new System.Drawing.Size(347, 20);
+            this.dtpDateEnded.TabIndex = 30;
             // 
-            // cbTeacherID
+            // lblDateEnded
             // 
-            this.cbTeacherID.FormattingEnabled = true;
-            this.cbTeacherID.Location = new System.Drawing.Point(111, 112);
-            this.cbTeacherID.Name = "cbTeacherID";
-            this.cbTeacherID.Size = new System.Drawing.Size(347, 21);
-            this.cbTeacherID.TabIndex = 24;
+            this.lblDateEnded.AutoSize = true;
+            this.lblDateEnded.Location = new System.Drawing.Point(3, 223);
+            this.lblDateEnded.Name = "lblDateEnded";
+            this.lblDateEnded.Size = new System.Drawing.Size(77, 13);
+            this.lblDateEnded.TabIndex = 29;
+            this.lblDateEnded.Text = "Ngày kết thúc:";
+            // 
+            // dtpDateStarted
+            // 
+            this.dtpDateStarted.Location = new System.Drawing.Point(111, 182);
+            this.dtpDateStarted.Name = "dtpDateStarted";
+            this.dtpDateStarted.Size = new System.Drawing.Size(347, 20);
+            this.dtpDateStarted.TabIndex = 28;
+            // 
+            // lblDateStarted
+            // 
+            this.lblDateStarted.AutoSize = true;
+            this.lblDateStarted.Location = new System.Drawing.Point(3, 188);
+            this.lblDateStarted.Name = "lblDateStarted";
+            this.lblDateStarted.Size = new System.Drawing.Size(75, 13);
+            this.lblDateStarted.TabIndex = 27;
+            this.lblDateStarted.Text = "Ngày bắt đầu:";
+            // 
+            // lblTypeStudy
+            // 
+            this.lblTypeStudy.AutoSize = true;
+            this.lblTypeStudy.Location = new System.Drawing.Point(3, 150);
+            this.lblTypeStudy.Name = "lblTypeStudy";
+            this.lblTypeStudy.Size = new System.Drawing.Size(91, 13);
+            this.lblTypeStudy.TabIndex = 26;
+            this.lblTypeStudy.Text = "Phương thức dạy:";
             // 
             // comboBox1
             // 
@@ -1026,63 +925,177 @@
             this.comboBox1.Size = new System.Drawing.Size(347, 21);
             this.comboBox1.TabIndex = 25;
             // 
-            // lblTypeStudy
+            // cbTeacherID
             // 
-            this.lblTypeStudy.AutoSize = true;
-            this.lblTypeStudy.Location = new System.Drawing.Point(3, 150);
-            this.lblTypeStudy.Name = "lblTypeStudy";
-            this.lblTypeStudy.Size = new System.Drawing.Size(91, 13);
-            this.lblTypeStudy.TabIndex = 26;
-            this.lblTypeStudy.Text = "Phương thức dạy:";
+            this.cbTeacherID.FormattingEnabled = true;
+            this.cbTeacherID.Location = new System.Drawing.Point(111, 112);
+            this.cbTeacherID.Name = "cbTeacherID";
+            this.cbTeacherID.Size = new System.Drawing.Size(347, 21);
+            this.cbTeacherID.TabIndex = 24;
             // 
-            // lblDateStarted
+            // lblTeacherChoose
             // 
-            this.lblDateStarted.AutoSize = true;
-            this.lblDateStarted.Location = new System.Drawing.Point(3, 188);
-            this.lblDateStarted.Name = "lblDateStarted";
-            this.lblDateStarted.Size = new System.Drawing.Size(75, 13);
-            this.lblDateStarted.TabIndex = 27;
-            this.lblDateStarted.Text = "Ngày bắt đầu:";
+            this.lblTeacherChoose.AutoSize = true;
+            this.lblTeacherChoose.Location = new System.Drawing.Point(3, 115);
+            this.lblTeacherChoose.Name = "lblTeacherChoose";
+            this.lblTeacherChoose.Size = new System.Drawing.Size(81, 13);
+            this.lblTeacherChoose.TabIndex = 23;
+            this.lblTeacherChoose.Text = "Giảng viên dạy:";
             // 
-            // dtpDateStarted
+            // cbCourseID
             // 
-            this.dtpDateStarted.Location = new System.Drawing.Point(111, 182);
-            this.dtpDateStarted.Name = "dtpDateStarted";
-            this.dtpDateStarted.Size = new System.Drawing.Size(347, 20);
-            this.dtpDateStarted.TabIndex = 28;
+            this.cbCourseID.FormattingEnabled = true;
+            this.cbCourseID.Location = new System.Drawing.Point(111, 77);
+            this.cbCourseID.Name = "cbCourseID";
+            this.cbCourseID.Size = new System.Drawing.Size(347, 21);
+            this.cbCourseID.TabIndex = 22;
             // 
-            // lblDateEnded
+            // lblCourseChoose
             // 
-            this.lblDateEnded.AutoSize = true;
-            this.lblDateEnded.Location = new System.Drawing.Point(3, 223);
-            this.lblDateEnded.Name = "lblDateEnded";
-            this.lblDateEnded.Size = new System.Drawing.Size(77, 13);
-            this.lblDateEnded.TabIndex = 29;
-            this.lblDateEnded.Text = "Ngày kết thúc:";
+            this.lblCourseChoose.AutoSize = true;
+            this.lblCourseChoose.Location = new System.Drawing.Point(3, 80);
+            this.lblCourseChoose.Name = "lblCourseChoose";
+            this.lblCourseChoose.Size = new System.Drawing.Size(73, 13);
+            this.lblCourseChoose.TabIndex = 21;
+            this.lblCourseChoose.Text = "Tên môn học:";
             // 
-            // dtpDateEnded
+            // btnDeleteClassroom
             // 
-            this.dtpDateEnded.Location = new System.Drawing.Point(111, 217);
-            this.dtpDateEnded.Name = "dtpDateEnded";
-            this.dtpDateEnded.Size = new System.Drawing.Size(347, 20);
-            this.dtpDateEnded.TabIndex = 30;
+            this.btnDeleteClassroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteClassroom.BackColor = System.Drawing.Color.Lime;
+            this.btnDeleteClassroom.FlatAppearance.BorderSize = 0;
+            this.btnDeleteClassroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteClassroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteClassroom.ForeColor = System.Drawing.Color.Blue;
+            this.btnDeleteClassroom.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteClassroom.Image")));
+            this.btnDeleteClassroom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteClassroom.Location = new System.Drawing.Point(331, 389);
+            this.btnDeleteClassroom.Name = "btnDeleteClassroom";
+            this.btnDeleteClassroom.Size = new System.Drawing.Size(142, 63);
+            this.btnDeleteClassroom.TabIndex = 20;
+            this.btnDeleteClassroom.Text = "Xoá";
+            this.btnDeleteClassroom.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // btnUpdateClassroom
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 258);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 31;
-            this.label2.Text = "Mô tả lớp học:";
+            this.btnUpdateClassroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateClassroom.BackColor = System.Drawing.Color.Red;
+            this.btnUpdateClassroom.FlatAppearance.BorderSize = 0;
+            this.btnUpdateClassroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateClassroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateClassroom.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateClassroom.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateClassroom.Image")));
+            this.btnUpdateClassroom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateClassroom.Location = new System.Drawing.Point(170, 389);
+            this.btnUpdateClassroom.Name = "btnUpdateClassroom";
+            this.btnUpdateClassroom.Size = new System.Drawing.Size(142, 63);
+            this.btnUpdateClassroom.TabIndex = 19;
+            this.btnUpdateClassroom.Text = "Cập Nhật";
+            this.btnUpdateClassroom.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdateClassroom.UseVisualStyleBackColor = false;
             // 
-            // txbClassDescription
+            // btnAddClassroom
             // 
-            this.txbClassDescription.Location = new System.Drawing.Point(111, 255);
-            this.txbClassDescription.Multiline = true;
-            this.txbClassDescription.Name = "txbClassDescription";
-            this.txbClassDescription.Size = new System.Drawing.Size(347, 70);
-            this.txbClassDescription.TabIndex = 32;
+            this.btnAddClassroom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddClassroom.BackColor = System.Drawing.Color.Yellow;
+            this.btnAddClassroom.FlatAppearance.BorderSize = 0;
+            this.btnAddClassroom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddClassroom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnAddClassroom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAddClassroom.Image = ((System.Drawing.Image)(resources.GetObject("btnAddClassroom.Image")));
+            this.btnAddClassroom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddClassroom.Location = new System.Drawing.Point(6, 389);
+            this.btnAddClassroom.Name = "btnAddClassroom";
+            this.btnAddClassroom.Size = new System.Drawing.Size(142, 63);
+            this.btnAddClassroom.TabIndex = 18;
+            this.btnAddClassroom.Text = "Thêm";
+            this.btnAddClassroom.UseVisualStyleBackColor = false;
+            // 
+            // txbMaxStudent
+            // 
+            this.txbMaxStudent.Location = new System.Drawing.Point(111, 42);
+            this.txbMaxStudent.Name = "txbMaxStudent";
+            this.txbMaxStudent.Size = new System.Drawing.Size(347, 20);
+            this.txbMaxStudent.TabIndex = 3;
+            // 
+            // lblMaxStudent
+            // 
+            this.lblMaxStudent.AutoSize = true;
+            this.lblMaxStudent.Location = new System.Drawing.Point(3, 45);
+            this.lblMaxStudent.Name = "lblMaxStudent";
+            this.lblMaxStudent.Size = new System.Drawing.Size(66, 13);
+            this.lblMaxStudent.TabIndex = 2;
+            this.lblMaxStudent.Text = "Sĩ số tối đa:";
+            // 
+            // txbClassroomID
+            // 
+            this.txbClassroomID.Location = new System.Drawing.Point(111, 6);
+            this.txbClassroomID.Name = "txbClassroomID";
+            this.txbClassroomID.ReadOnly = true;
+            this.txbClassroomID.Size = new System.Drawing.Size(347, 20);
+            this.txbClassroomID.TabIndex = 1;
+            // 
+            // lblClassroomID
+            // 
+            this.lblClassroomID.AutoSize = true;
+            this.lblClassroomID.Location = new System.Drawing.Point(3, 9);
+            this.lblClassroomID.Name = "lblClassroomID";
+            this.lblClassroomID.Size = new System.Drawing.Size(63, 13);
+            this.lblClassroomID.TabIndex = 0;
+            this.lblClassroomID.Text = "Mã lớp học:";
+            this.lblClassroomID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(508, 457);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // tpStatistic
+            // 
+            this.tpStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.tpStatistic.Location = new System.Drawing.Point(4, 47);
+            this.tpStatistic.Name = "tpStatistic";
+            this.tpStatistic.Size = new System.Drawing.Size(984, 457);
+            this.tpStatistic.TabIndex = 4;
+            this.tpStatistic.Text = "THỐNG KÊ";
+            this.tpStatistic.ToolTipText = "Thống kê mọi sự hoạt động";
+            this.tpStatistic.UseVisualStyleBackColor = true;
+            // 
+            // iList
+            // 
+            this.iList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iList.ImageStream")));
+            this.iList.TransparentColor = System.Drawing.Color.Transparent;
+            this.iList.Images.SetKeyName(0, "users.png");
+            this.iList.Images.SetKeyName(1, "categories.png");
+            this.iList.Images.SetKeyName(2, "courses.png");
+            this.iList.Images.SetKeyName(3, "scheduled.png");
+            this.iList.Images.SetKeyName(4, "satistics.png");
+            this.iList.Images.SetKeyName(5, "add.png");
+            this.iList.Images.SetKeyName(6, "delete.png");
+            this.iList.Images.SetKeyName(7, "update.png");
+            // 
+            // ofdFileImage
+            // 
+            this.ofdFileImage.Title = "Chọn ảnh";
+            // 
+            // niDashboard
+            // 
+            this.niDashboard.Text = "Thông báo";
+            this.niDashboard.Visible = true;
             // 
             // FDashBoard
             // 
@@ -1108,9 +1121,9 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourse)).EndInit();
             this.tpClassroom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1199,5 +1212,6 @@
         private System.Windows.Forms.ComboBox cbTeacherID;
         private System.Windows.Forms.TextBox txbClassDescription;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NotifyIcon niDashboard;
     }
 }
