@@ -56,7 +56,8 @@ namespace CourseManagementDesktopApp
             Bitmap mapBtnClassroomDelete = new Bitmap(((Image)(resources.GetObject("btnDeleteClassroom.Image"))), new Size(40, 40));
             btnDeleteClassroom.Image = (Image)mapBtnClassroomDelete;
 
-            LoadDataComboBox();
+            LoadDataComboBoxCategory();
+//            LoadDataComboBoxClassroom();
 
             LoadDataUsersDGV();
             LoadDataCategoryDGV();
@@ -64,7 +65,22 @@ namespace CourseManagementDesktopApp
             LoadDataClassroomDGV();
         }
 
-        private void LoadDataComboBox()
+        private void LoadDataComboBoxClassroom()
+        {
+            using(CourseManagementEntities entities = new CourseManagementEntities())
+            {
+                //ComboBox Course
+                cbCourseID.DataSource = entities.Courses.Select(c => $"{c.CourseID} - {c.CourseName}").ToList();
+
+                //ComboBox Teacher
+                cbTeacherID.DataSource = entities.People
+                   .Where(p => p.Role.Equals("Giáo Viên"))
+                   .Select(p => $"{p.PerID} - {p.PerName}")
+                   .ToList();
+            }
+        }
+
+        private void LoadDataComboBoxCategory()
         {
             using(CourseManagementEntities entities = new CourseManagementEntities())
             {
@@ -177,6 +193,7 @@ namespace CourseManagementDesktopApp
                         MaxStudent = classroom.MaxStudent
                     });
                 }
+                dgvClassroom.DataSource = classroomDTOs;
             }
         }
 
@@ -409,7 +426,254 @@ namespace CourseManagementDesktopApp
             }
         }
 
-        
+        /**
+         *  Course
+         */
+        private void CellCourseClickEvent(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && !btnAddCourse.Text.Equals("Xác Nhận"))
+            {
+                DataGridViewRow dgvRowCourse = dgvCourse.Rows[e.RowIndex];
+                string getCourseID = dgvRowCourse.Cells[0].Value?.ToString() ?? string.Empty;
+                if(getCourseID == string.Empty)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra khi lấy dữ liệu! Vui lòng liên hệ nhà phát triển", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
 
+                using(CourseManagementEntities entities = new CourseManagementEntities())
+                {
+                    Course target = entities.Courses.FirstOrDefault(c => c.CourseID.Equals(getCourseID));
+                    if(target is null)
+                    {
+                        MessageBox.Show("Không tìm thấy dữ liệu của môn học này", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LoadDataCourseDGV();
+                        return;
+                    }
+
+                    txbCourseID.Text = target.CourseID;
+                    txbCourseName.Text = target.CourseName;
+                    txbCourseDescription.Text = target.CourseDescription;
+                    txbDateCreatedCourse.Text = target.DateCreated.ToString();
+                    txbDateModifierCourse.Text = target.DateModifier.ToString();
+                    cbCateID.SelectedItem = target.CateID + " - " + entities.Categories.FirstOrDefault(c => c.CateID.Equals(target.CateID)).CateName;
+                }
+            }
+        }
+
+        private void BtnAddCourseClicked(object sender, EventArgs e)
+        {
+            string getCourseID = GetGenerateDataID("Course");
+            if (btnAddCourse.Text.Equals("Thêm"))
+            {
+                btnAddCourse.Text = "Xác Nhận";
+                btnAddCourse.TextAlign = ContentAlignment.MiddleRight;
+                btnUpdateCourse.Enabled = btnDeleteCourse.Enabled = false;
+                btnUpdateCourse.BackColor = btnDeleteCourse.BackColor = Color.Gray;
+                txbCourseID.Text = getCourseID;
+                txbCourseName.Text = txbCourseDescription.Text = string.Empty;
+                txbDateCreatedCourse.Text = DateTime.Now.ToString();
+                txbDateModifierCourse.Text = DateTime.Now.ToString();
+                txbCourseName.ReadOnly = txbCourseDescription.ReadOnly = false;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Xác nhận thêm môn học?", "Môn Học", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (txbCourseName.Text == string.Empty)
+                    {
+                        MessageBox.Show("Tên môn học không được để trống!", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    Course course = new Course()
+                    {
+                        CourseID = getCourseID,
+                        CourseName = txbCourseName.Text,
+                        CourseDescription = txbCourseDescription.Text,
+                        CateID = cbCateID.SelectedItem.ToString().Split('-')[0].Trim(),
+                        DateCreated = DateTime.Now,
+                        DateModifier = DateTime.Now
+                    };
+
+                    using (CourseManagementEntities entities = new CourseManagementEntities())
+                    {
+                        try
+                        {
+                            entities.Courses.Add(course);
+                            entities.SaveChanges();
+                            MessageBox.Show("Thêm môn học thành công!", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            txbCourseID.Text = txbCourseName.Text = txbCourseDescription.Text = string.Empty;
+                            txbDateCreatedCourse.Text = DateTime.Now.ToString();
+                            txbDateModifierCourse.Text = DateTime.Now.ToString();
+                            btnAddCourse.Text = "Thêm";
+                            btnUpdateCourse.Enabled = btnDeleteCourse.Enabled = true;
+                            btnUpdateCourse.BackColor = Color.Red;
+                            btnDeleteCourse.BackColor = Color.Lime;
+                            txbCourseName.ReadOnly = txbCourseDescription.ReadOnly = true;
+                            LoadDataCourseDGV();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Thêm môn học thất bại! Liên hệ nhà phát triển", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                } else if(result == DialogResult.No)
+                {
+                    btnAddCourse.Text = "Thêm";
+                    btnAddCourse.TextAlign = ContentAlignment.MiddleCenter;
+                    btnUpdateCourse.Enabled = btnDeleteCourse.Enabled = true;
+                    btnUpdateCourse.BackColor = Color.Red;
+                    btnDeleteCourse.BackColor = Color.Lime;
+                    txbCourseID.Text = txbCourseName.Text = txbCourseDescription.Text
+                        = txbDateCreatedCourse.Text = txbDateModifierCourse.Text = string.Empty;
+                    txbCourseName.ReadOnly = txbCourseDescription.ReadOnly = true;
+                }
+            }
+        }
+
+        private void BtnUpdateCourseClicked(object sender, EventArgs e)
+        {
+            if(dgvCourse.SelectedRows.Count > 0)
+            {
+                if (btnUpdateCourse.Text.Equals("Cập Nhật"))
+                {
+                    btnUpdateCourse.Text = "Xác Nhận";
+                    btnAddCourse.BackColor = btnDeleteCourse.BackColor = Color.Gray;
+                    btnAddCourse.Enabled = btnDeleteCourse.Enabled = false;
+                    txbCourseName.ReadOnly = txbCourseDescription.ReadOnly = false;
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Bạn có chắc chắn cập nhật thông tin không?", "Cập Nhật", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (txbCourseName.Text == string.Empty || txbCourseDescription.Text == string.Empty)
+                        {
+                            MessageBox.Show("Tên môn học và mô tả không được để trống", "Cập Nhật", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        using (CourseManagementEntities entities = new CourseManagementEntities())
+                        {
+                            try
+                            {
+                                Course course = entities.Courses.FirstOrDefault(c => c.CourseID.Equals(txbCourseID.Text));
+                                course.CourseName = txbCourseName.Text;
+                                course.CourseDescription = txbCourseDescription.Text;
+                                course.DateModifier = DateTime.Now;
+                                entities.Courses.AddOrUpdate(course);
+                                entities.SaveChanges();
+                                MessageBox.Show("Cập nhật môn học thành công!", "Cập Nhật", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadDataCourseDGV();
+                                txbCourseID.Text = txbCourseName.Text = txbCourseDescription.Text = string.Empty;
+                                txbDateCreatedCourse.Text = txbDateModifierCourse.Text = string.Empty;
+                                btnUpdateCourse.Text = "Cập Nhật";
+                                btnAddCourse.Enabled = btnDeleteCourse.Enabled = true;
+                                btnAddCourse.BackColor = Color.Red;
+                                btnDeleteCourse.BackColor = Color.Lime;
+                                txbCourseName.ReadOnly = txbCourseDescription.ReadOnly = true;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Cập nhật môn học thất bại! Liên hệ nhà phát triển", "Cập Nhật", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        btnUpdateCourse.Text = "Cập Nhật";
+                        btnAddCourse.Enabled = btnDeleteCourse.Enabled = true;
+                        btnAddCourse.BackColor = Color.Red;
+                        btnDeleteCourse.BackColor = Color.Lime;
+                        txbCourseName.ReadOnly = txbCourseDescription.ReadOnly = true;
+                    }
+                }
+            } else
+            {
+                MessageBox.Show("Hãy chọn 1 dòng để có thể cập nhật thông tin", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnDeleteCourseClicked(object sender, EventArgs e)
+        {
+            if(dgvCourse.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc là xoá dữ liệu này không?", "Môn Học", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    using (CourseManagementEntities entities = new CourseManagementEntities())
+                    {
+                        entities.Courses.Remove(entities.Courses.FirstOrDefault(c => c.CourseID.Equals(txbCourseID.Text)));
+                        entities.SaveChanges();
+                        MessageBox.Show("Xoá môn học thành công!", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txbCourseID.Text = txbCourseName.Text = txbCourseDescription.Text = string.Empty;
+                        txbDateCreatedCourse.Text = txbDateModifierCourse.Text = string.Empty;
+                        LoadDataCourseDGV();
+                    }
+                }
+            } else
+            {
+                MessageBox.Show("Hãy chọn 1 dòng để có thể xoá thông tin", "Môn Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /**
+         *  Classroom
+         */
+        private void CellClassroomClickEvent(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && !btnAddClassroom.Text.Equals("Xác Nhận"))
+            {
+                DataGridViewRow dgvRowCategory = dgvCategory.Rows[e.RowIndex];
+                string getClassroomID = dgvRowCategory.Cells[0].Value?.ToString() ?? string.Empty;
+                if(getClassroomID == string.Empty)
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra khi lấy dữ liệu! Vui lòng liên hệ nhà phát triển", "Lớp Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                    return;
+                }
+
+                using(CourseManagementEntities entities = new CourseManagementEntities())
+                {
+                    ClassRoom target = entities.ClassRooms.FirstOrDefault(cr => cr.ClassID.Equals(getClassroomID));
+                    if(target is null)
+                    {
+                        MessageBox.Show("Không tìm thấy dữ liệu mã lớp học này", "Lớp Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LoadDataCourseDGV();
+                        return;
+                    }
+
+                    txbClassroomID.Text = target.ClassID;
+                    nupMaxStudent.Value = target.MaxStudent;
+                    cbCourseID.SelectedItem = target.CourseID;
+                    cbTeacherID.SelectedItem = target.TeacherID;
+                    cbTypeStudy.SelectedItem = target.TypeStudy;
+                    dtpDateStarted.Value = target.DateStarted;
+                    dtpDateEnded.Value = target.DateEnded;
+                    txbClassDescription.Text = target.ClassDescription;
+                }
+            }
+        }
+
+        //Add Classroom
+        private void BtnAddClassroomClicked(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //Update Classroom
+        private void BtnUpdateClassroomClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        //Delete Classroom
+        private void BtnDeleteClassroomClicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
