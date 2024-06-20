@@ -864,6 +864,7 @@
             // 
             // nupMaxStudent
             // 
+            this.nupMaxStudent.Enabled = false;
             this.nupMaxStudent.Location = new System.Drawing.Point(111, 43);
             this.nupMaxStudent.Maximum = new decimal(new int[] {
             80,
@@ -876,6 +877,7 @@
             // 
             // txbClassDescription
             // 
+            this.txbClassDescription.Enabled = false;
             this.txbClassDescription.Location = new System.Drawing.Point(111, 255);
             this.txbClassDescription.Multiline = true;
             this.txbClassDescription.Name = "txbClassDescription";
@@ -893,6 +895,7 @@
             // 
             // dtpDateEnded
             // 
+            this.dtpDateEnded.Enabled = false;
             this.dtpDateEnded.Location = new System.Drawing.Point(111, 217);
             this.dtpDateEnded.Name = "dtpDateEnded";
             this.dtpDateEnded.Size = new System.Drawing.Size(347, 20);
@@ -909,6 +912,7 @@
             // 
             // dtpDateStarted
             // 
+            this.dtpDateStarted.Enabled = false;
             this.dtpDateStarted.Location = new System.Drawing.Point(111, 182);
             this.dtpDateStarted.Name = "dtpDateStarted";
             this.dtpDateStarted.Size = new System.Drawing.Size(347, 20);
@@ -934,9 +938,9 @@
             // 
             // cbTypeStudy
             // 
+            this.cbTypeStudy.Enabled = false;
             this.cbTypeStudy.FormattingEnabled = true;
             this.cbTypeStudy.Items.AddRange(new object[] {
-            "None",
             "Online",
             "Offline"});
             this.cbTypeStudy.Location = new System.Drawing.Point(111, 147);
@@ -946,6 +950,7 @@
             // 
             // cbTeacherID
             // 
+            this.cbTeacherID.Enabled = false;
             this.cbTeacherID.FormattingEnabled = true;
             this.cbTeacherID.Location = new System.Drawing.Point(111, 112);
             this.cbTeacherID.Name = "cbTeacherID";
@@ -963,6 +968,7 @@
             // 
             // cbCourseID
             // 
+            this.cbCourseID.Enabled = false;
             this.cbCourseID.FormattingEnabled = true;
             this.cbCourseID.Location = new System.Drawing.Point(111, 77);
             this.cbCourseID.Name = "cbCourseID";

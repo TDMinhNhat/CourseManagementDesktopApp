@@ -15,6 +15,6 @@ namespace CourseManagementDTO
         public string TeacherID { get; set; }
         public string CourseID { get; set; }
         public int MaxStudent { get; set; }
-        
+        public string ClassStatus { get; set; }
     }
 }
