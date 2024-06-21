@@ -10,6 +10,7 @@ using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,10 +31,10 @@ namespace CourseManagementDesktopApp
 
             Bitmap mapBtnAdd = new Bitmap(((Image)(resources.GetObject("btnAddPerson.Image"))), new Size(40, 40));
             btnAddPerson.Image = (Image)mapBtnAdd;
-            Bitmap mapBtnUpdate = new Bitmap(((Image)(resources.GetObject("btnUpdate.Image"))), new Size(40, 40));
-            btnUpdate.Image = (Image)mapBtnUpdate;
-            Bitmap mapBtnDelete = new Bitmap(((Image)(resources.GetObject("btnDelete.Image"))), new Size(40, 40));
-            btnDelete.Image = (Image)mapBtnDelete;
+            Bitmap mapBtnUpdate = new Bitmap(((Image)(resources.GetObject("btnUpdatePerson.Image"))), new Size(40, 40));
+            btnUpdatePerson.Image = (Image)mapBtnUpdate;
+            Bitmap mapBtnDelete = new Bitmap(((Image)(resources.GetObject("btnDeletePerson.Image"))), new Size(40, 40));
+            btnDeletePerson.Image = (Image)mapBtnDelete;
 
             Bitmap mapBtnCategoryAdd = new Bitmap(((Image)(resources.GetObject("btnAddCate.Image"))), new Size(40, 40));
             btnAddCate.Image = (Image)mapBtnCategoryAdd;
@@ -228,7 +229,43 @@ namespace CourseManagementDesktopApp
                 {
                     case "Person":
                         {
-                            return null;
+                            string getRole = cbRole.SelectedItem == null ? "Học Viên" : cbRole.SelectedItem.ToString();
+                            if(getRole.Equals("Học Viên"))
+                            {
+                                dateCheck = dateCheck + "1";
+                                Person target = entities.People.Where(p => p.PerID.StartsWith(dateCheck)).OrderByDescending(p => p.PerID).FirstOrDefault();
+                                if(target is null) 
+                                {
+                                    return dateCheck + "001";
+                                } else
+                                {
+                                    return (Convert.ToInt64(target.PerID) + 1).ToString();
+                                }
+                            } else if(getRole.Equals("Giáo Viên"))
+                            {
+                                dateCheck = dateCheck + "2";
+                                Person target = entities.People.Where(p => p.PerID.StartsWith(dateCheck)).OrderByDescending(p => p.PerID).FirstOrDefault();
+                                if (target is null)
+                                {
+                                    return dateCheck + "001";
+                                }
+                                else
+                                {
+                                    return (Convert.ToInt64(target.PerID) + 1).ToString();
+                                }
+                            } else
+                            {
+                                dateCheck = dateCheck + "3";
+                                Person target = entities.People.Where(p => p.PerID.StartsWith(dateCheck)).OrderByDescending(p => p.PerID).FirstOrDefault();
+                                if (target is null)
+                                {
+                                    return dateCheck + "001";
+                                }
+                                else
+                                {
+                                    return (Convert.ToInt64(target.PerID) + 1).ToString();
+                                }
+                            }
                         }
                     case "Category":
                         {
@@ -256,6 +293,206 @@ namespace CourseManagementDesktopApp
                             throw new Exception("Can't find the type");
                         }
                 }
+            }
+        }
+
+        /**
+         * Persons
+         */
+        private void CellPersonClickEvent(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow dgvRowPerson = dgvUsers.Rows[e.RowIndex];
+            string getPersonID = dgvRowPerson.Cells[0].Value?.ToString() ?? string.Empty;
+
+            if(getPersonID == string.Empty)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra khi lấy dữ liệu! Vui lòng liên hệ nhà phát triển", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LoadDataUsersDGV();
+                return;
+            }
+
+            using(CourseManagementEntities entities = new CourseManagementEntities())
+            {
+                Person target = entities.People.FirstOrDefault(p => p.PerID.Equals(getPersonID));
+                txbPerID.Text = target.PerID;
+                txbPerName.Text = target.PerName;
+                txbEmail.Text = target.Email;
+                txbPhone.Text = target.Phone;
+                txbAddress.Text = target.Address;
+                cbSex.SelectedItem = target.Sex ? "Nữ" : "Nam";
+                cbRole.SelectedItem = target.Role;
+                dtpDateCreated.Value = target.DateCreated.Value;
+                dtpDateModifier.Value = target.DateModifier.Value;
+            }
+        }
+
+        private void CBRoleSelectChangedEvent(object sender, EventArgs e)
+        {
+            if(btnAddPerson.Text == "Xác Nhận")
+            {
+                txbPerID.Text = GetGenerateDataID("Person");
+            } 
+        }
+
+        private void BtnAddPersonClicked(object sender, EventArgs e)
+        {
+            if(btnAddPerson.Text.Equals("Thêm"))
+            {
+                btnAddPerson.Text = "Xác Nhận";
+                btnAddPerson.TextAlign = ContentAlignment.MiddleRight;
+                btnUpdatePerson.Enabled = btnDeletePerson.Enabled = false;
+                btnUpdatePerson.BackColor = btnDeletePerson.BackColor = Color.Gray;
+                txbPerID.Text = GetGenerateDataID("Person");
+                txbPerName.Text = txbEmail.Text = txbPhone.Text = txbAddress.Text = string.Empty;
+                cbSex.SelectedItem = "Nam";
+                cbRole.SelectedItem = "Học Viên";
+                dtpDateCreated.Value = dtpDateModifier.Value = DateTime.Now;
+
+                txbPerID.Enabled = txbPerName.Enabled = txbEmail.Enabled = txbPhone.Enabled = txbAddress.Enabled 
+                    = cbSex.Enabled = cbRole.Enabled = true;
+                txbPerID.Text = GetGenerateDataID("Person");
+                dtpDateCreated.Value = dtpDateModifier.Value = DateTime.Now;
+            } else
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc là thêm người dùng này không?", "Người Dùng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if(result == DialogResult.Yes)
+                {
+                    Person target = new Person()
+                    {
+                        PerID = txbPerID.Text,
+                        PerName = txbPerName.Text,
+                        Email = txbEmail.Text,
+                        Phone = txbPhone.Text,
+                        Address = txbAddress.Text,
+                        AccountName = txbPerID.Text,
+                        Password = "123456789",
+                        Sex = cbSex.SelectedItem.ToString().Equals("Nam") ? false : true,
+                        Role = cbRole.SelectedItem.ToString(),
+                        DateCreated = DateTime.Now,
+                        DateModifier = DateTime.Now,
+                        Status = 1
+                    };
+
+                    using(CourseManagementEntities entities = new CourseManagementEntities())
+                    {
+                        try
+                        {
+                            entities.People.Add(target);
+                            entities.SaveChanges();
+                            MessageBox.Show("Thêm người dùng thành công!", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            txbPerID.Text = txbPerName.Text = txbEmail.Text = txbPhone.Text = txbAddress.Text = string.Empty;
+                            cbSex.SelectedItem = "Nam";
+                            cbRole.SelectedItem = "Học Viên";
+                            dtpDateCreated.Value = dtpDateModifier.Value = DateTime.Now;
+                            btnAddPerson.Text = "Thêm";
+                            btnAddPerson.TextAlign = ContentAlignment.MiddleCenter;
+                            btnUpdatePerson.Enabled = btnDeletePerson.Enabled = true;
+                            btnUpdatePerson.BackColor = Color.Red;
+                            btnDeletePerson.BackColor = Color.Lime;
+                            txbPerID.Enabled = txbPerName.Enabled = txbEmail.Enabled = txbPhone.Enabled = txbAddress.Enabled
+                            = cbSex.Enabled = cbRole.Enabled = false;
+                            LoadDataUsersDGV();
+                        } catch
+                        {
+                            MessageBox.Show("Thêm người dùng thất bại! Liên hệ nhà phát triển", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    
+                } else if(result == DialogResult.No)
+                {
+                    btnAddPerson.Text = "Thêm";
+                    btnAddPerson.TextAlign = ContentAlignment.MiddleCenter;
+                    btnUpdatePerson.Enabled = btnDeletePerson.Enabled = true;
+                    btnUpdatePerson.BackColor = Color.Red;
+                    btnDeletePerson.BackColor = Color.Lime;
+                    txbPerID.Text = txbPerName.Text = txbEmail.Text = txbPhone.Text = txbAddress.Text = string.Empty;
+                    cbSex.SelectedItem = "Nam";
+                    cbRole.SelectedItem = "Học Viên";
+                    dtpDateCreated.Value = dtpDateModifier.Value = DateTime.Now;
+
+                    txbPerID.Enabled = txbPerName.Enabled = txbEmail.Enabled = txbPhone.Enabled = txbAddress.Enabled
+                    = cbSex.Enabled = cbRole.Enabled = false;
+                }
+            }
+        }
+
+        private void BtnUpdatePersonClicked(object sender, EventArgs e)
+        {
+            if(btnUpdatePerson.Text.Equals("Cập Nhật"))
+            {
+                btnUpdatePerson.Text = "Xác Nhận";
+                btnAddPerson.Enabled = btnDeletePerson.Enabled = false;
+                btnAddPerson.BackColor = btnDeletePerson.BackColor = Color.Gray;
+                txbPerName.Enabled = txbEmail.Enabled = txbPhone.Enabled = txbAddress.Enabled = cbSex.Enabled = cbRole.Enabled = true;
+
+            } else
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc là cập nhật thông tin người dùng này không?", "Người Dùng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if(result == DialogResult.Yes)
+                {
+                    using(CourseManagementEntities entities = new CourseManagementEntities())
+                    {
+                        Person target = entities.People.FirstOrDefault(p => p.PerID.Equals(txbPerID.Text));
+                        if(target is null)
+                        {
+                            MessageBox.Show("Không tìm thấy mã người dùng này! Liên hệ nhà phát triển", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        target.PerID = txbPerID.Text;
+                        target.PerName = txbPerName.Text;
+                        target.Email = txbEmail.Text;
+                        target.Phone = txbPhone.Text;
+                        target.Address = txbAddress.Text;
+                        target.Sex = cbSex.SelectedItem.ToString().Equals("Nam") ? false : true;
+                        target.Role = cbRole.SelectedItem.ToString();
+                        target.DateModifier = DateTime.Now;
+
+
+                        entities.People.AddOrUpdate(target);
+                        entities.SaveChanges();
+
+                        MessageBox.Show("Cập nhật thông tin người dùng thành công!", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataUsersDGV();
+                        txbPerID.Text = txbPerName.Text = txbEmail.Text = txbPhone.Text = txbAddress.Text = string.Empty;
+                        cbSex.SelectedItem = "Nam";
+                        cbRole.SelectedItem = "Học Viên";
+                        dtpDateCreated.Value = dtpDateModifier.Value = DateTime.Now;
+                        btnUpdatePerson.Text = "Cập Nhật";
+                        btnAddPerson.Enabled = btnDeletePerson.Enabled = true;
+                        btnAddPerson.BackColor = Color.Yellow;
+                        btnDeletePerson.BackColor = Color.Lime;
+                        txbPerName.Enabled = txbEmail.Enabled = txbPhone.Enabled = txbAddress.Enabled = cbSex.Enabled = cbRole.Enabled = false;
+
+                    }
+                } else if(result == DialogResult.No)
+                {
+                    btnUpdatePerson.Text = "Xác Nhận";
+                    btnAddPerson.Enabled = btnDeletePerson.Enabled = true;
+                    btnAddPerson.BackColor = Color.Yellow;
+                    btnDeletePerson.BackColor = Color.Lime;
+                    txbPerName.Enabled = txbEmail.Enabled = txbPhone.Enabled = txbAddress.Enabled = cbSex.Enabled = cbRole.Enabled = false;
+                    txbPerID.Text = txbPerName.Text = txbEmail.Text = txbPhone.Text = txbAddress.Text = string.Empty;
+                } 
+            }
+        }
+
+        private void BtnDeletePersonClicked(object sender, EventArgs e)
+        {
+            if(dgvUsers.SelectedRows.Count > 0)
+            {
+                if(MessageBox.Show("Bạn có chắc là xoá người dùng này không?", "Người Dùng", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    using(CourseManagementEntities entities = new CourseManagementEntities())
+                    {
+                        entities.People.Remove(entities.People.FirstOrDefault(p => p.PerID.Equals(txbPerID.Text)));
+                        entities.SaveChanges();
+                        MessageBox.Show("Xoá người dùng thành công!", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataUsersDGV();
+                    }
+                }
+            } else
+            {
+                MessageBox.Show("Hãy chọn 1 dòng dữ liệu để xoá", "Người Dùng", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -851,5 +1088,7 @@ namespace CourseManagementDesktopApp
                 MessageBox.Show("Hãy chọn 1 dòng dữ liệu để xoá!", "Lớp Học", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

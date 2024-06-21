@@ -33,12 +33,12 @@
             this.tbDashboard = new System.Windows.Forms.TabControl();
             this.tpUsers = new System.Windows.Forms.TabPage();
             this.pnUsersControl = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.dtpDateModifier = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateCreated = new System.Windows.Forms.DateTimePicker();
+            this.btnDeletePerson = new System.Windows.Forms.Button();
+            this.btnUpdatePerson = new System.Windows.Forms.Button();
             this.btnAddPerson = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.lblDateModifier = new System.Windows.Forms.Label();
-            this.txbDateCreated = new System.Windows.Forms.TextBox();
             this.lblDateCreated = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.lblRole = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.lblSex = new System.Windows.Forms.Label();
             this.txbAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbEmail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txbPhone = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
@@ -165,12 +165,12 @@
             // 
             this.pnUsersControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnUsersControl.Controls.Add(this.btnDelete);
-            this.pnUsersControl.Controls.Add(this.btnUpdate);
+            this.pnUsersControl.Controls.Add(this.dtpDateModifier);
+            this.pnUsersControl.Controls.Add(this.dtpDateCreated);
+            this.pnUsersControl.Controls.Add(this.btnDeletePerson);
+            this.pnUsersControl.Controls.Add(this.btnUpdatePerson);
             this.pnUsersControl.Controls.Add(this.btnAddPerson);
-            this.pnUsersControl.Controls.Add(this.textBox2);
             this.pnUsersControl.Controls.Add(this.lblDateModifier);
-            this.pnUsersControl.Controls.Add(this.txbDateCreated);
             this.pnUsersControl.Controls.Add(this.lblDateCreated);
             this.pnUsersControl.Controls.Add(this.cbRole);
             this.pnUsersControl.Controls.Add(this.lblRole);
@@ -178,7 +178,7 @@
             this.pnUsersControl.Controls.Add(this.lblSex);
             this.pnUsersControl.Controls.Add(this.txbAddress);
             this.pnUsersControl.Controls.Add(this.lblAddress);
-            this.pnUsersControl.Controls.Add(this.textBox1);
+            this.pnUsersControl.Controls.Add(this.txbEmail);
             this.pnUsersControl.Controls.Add(this.lblEmail);
             this.pnUsersControl.Controls.Add(this.txbPhone);
             this.pnUsersControl.Controls.Add(this.lblPhone);
@@ -191,42 +191,60 @@
             this.pnUsersControl.Size = new System.Drawing.Size(476, 561);
             this.pnUsersControl.TabIndex = 1;
             // 
-            // btnDelete
+            // dtpDateModifier
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dtpDateModifier.Enabled = false;
+            this.dtpDateModifier.Location = new System.Drawing.Point(111, 256);
+            this.dtpDateModifier.Name = "dtpDateModifier";
+            this.dtpDateModifier.Size = new System.Drawing.Size(347, 20);
+            this.dtpDateModifier.TabIndex = 22;
+            // 
+            // dtpDateCreated
+            // 
+            this.dtpDateCreated.Enabled = false;
+            this.dtpDateCreated.Location = new System.Drawing.Point(111, 219);
+            this.dtpDateCreated.Name = "dtpDateCreated";
+            this.dtpDateCreated.Size = new System.Drawing.Size(347, 20);
+            this.dtpDateCreated.TabIndex = 21;
+            // 
+            // btnDeletePerson
+            // 
+            this.btnDeletePerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.Lime;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnDelete.ForeColor = System.Drawing.Color.Blue;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(331, 493);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(142, 63);
-            this.btnDelete.TabIndex = 20;
-            this.btnDelete.Text = "Xoá";
-            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDeletePerson.BackColor = System.Drawing.Color.Lime;
+            this.btnDeletePerson.FlatAppearance.BorderSize = 0;
+            this.btnDeletePerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnDeletePerson.ForeColor = System.Drawing.Color.Blue;
+            this.btnDeletePerson.Image = ((System.Drawing.Image)(resources.GetObject("btnDeletePerson.Image")));
+            this.btnDeletePerson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeletePerson.Location = new System.Drawing.Point(331, 493);
+            this.btnDeletePerson.Name = "btnDeletePerson";
+            this.btnDeletePerson.Size = new System.Drawing.Size(142, 63);
+            this.btnDeletePerson.TabIndex = 20;
+            this.btnDeletePerson.Text = "Xoá";
+            this.btnDeletePerson.UseVisualStyleBackColor = false;
+            this.btnDeletePerson.Click += new System.EventHandler(this.BtnDeletePersonClicked);
             // 
-            // btnUpdate
+            // btnUpdatePerson
             // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnUpdatePerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.BackColor = System.Drawing.Color.Red;
-            this.btnUpdate.FlatAppearance.BorderSize = 0;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(170, 493);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(142, 63);
-            this.btnUpdate.TabIndex = 19;
-            this.btnUpdate.Text = "Cập Nhật";
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdatePerson.BackColor = System.Drawing.Color.Red;
+            this.btnUpdatePerson.FlatAppearance.BorderSize = 0;
+            this.btnUpdatePerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdatePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdatePerson.ForeColor = System.Drawing.Color.White;
+            this.btnUpdatePerson.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdatePerson.Image")));
+            this.btnUpdatePerson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdatePerson.Location = new System.Drawing.Point(170, 493);
+            this.btnUpdatePerson.Name = "btnUpdatePerson";
+            this.btnUpdatePerson.Size = new System.Drawing.Size(142, 63);
+            this.btnUpdatePerson.TabIndex = 19;
+            this.btnUpdatePerson.Text = "Cập Nhật";
+            this.btnUpdatePerson.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdatePerson.UseVisualStyleBackColor = false;
+            this.btnUpdatePerson.Click += new System.EventHandler(this.BtnUpdatePersonClicked);
             // 
             // btnAddPerson
             // 
@@ -245,14 +263,7 @@
             this.btnAddPerson.TabIndex = 18;
             this.btnAddPerson.Text = "Thêm";
             this.btnAddPerson.UseVisualStyleBackColor = false;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(111, 259);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(347, 20);
-            this.textBox2.TabIndex = 17;
+            this.btnAddPerson.Click += new System.EventHandler(this.BtnAddPersonClicked);
             // 
             // lblDateModifier
             // 
@@ -262,14 +273,6 @@
             this.lblDateModifier.Size = new System.Drawing.Size(102, 13);
             this.lblDateModifier.TabIndex = 16;
             this.lblDateModifier.Text = "Chỉnh sửa gần nhất:";
-            // 
-            // txbDateCreated
-            // 
-            this.txbDateCreated.Location = new System.Drawing.Point(111, 222);
-            this.txbDateCreated.Name = "txbDateCreated";
-            this.txbDateCreated.ReadOnly = true;
-            this.txbDateCreated.Size = new System.Drawing.Size(347, 20);
-            this.txbDateCreated.TabIndex = 15;
             // 
             // lblDateCreated
             // 
@@ -282,17 +285,18 @@
             // 
             // cbRole
             // 
+            this.cbRole.Enabled = false;
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Items.AddRange(new object[] {
-            "None",
             "Học Viên",
-            "Giảng Viên",
+            "Giáo Viên",
             "Quản Lý",
             "Người Quản Trị"});
             this.cbRole.Location = new System.Drawing.Point(317, 181);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(141, 21);
             this.cbRole.TabIndex = 13;
+            this.cbRole.SelectedValueChanged += new System.EventHandler(this.CBRoleSelectChangedEvent);
             // 
             // lblRole
             // 
@@ -305,9 +309,9 @@
             // 
             // cbSex
             // 
+            this.cbSex.Enabled = false;
             this.cbSex.FormattingEnabled = true;
             this.cbSex.Items.AddRange(new object[] {
-            "None",
             "Nam",
             "Nữ"});
             this.cbSex.Location = new System.Drawing.Point(111, 181);
@@ -326,6 +330,7 @@
             // 
             // txbAddress
             // 
+            this.txbAddress.Enabled = false;
             this.txbAddress.Location = new System.Drawing.Point(111, 145);
             this.txbAddress.Name = "txbAddress";
             this.txbAddress.Size = new System.Drawing.Size(347, 20);
@@ -340,12 +345,13 @@
             this.lblAddress.TabIndex = 8;
             this.lblAddress.Text = "Địa Chỉ:";
             // 
-            // textBox1
+            // txbEmail
             // 
-            this.textBox1.Location = new System.Drawing.Point(111, 74);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(347, 20);
-            this.textBox1.TabIndex = 7;
+            this.txbEmail.Enabled = false;
+            this.txbEmail.Location = new System.Drawing.Point(111, 74);
+            this.txbEmail.Name = "txbEmail";
+            this.txbEmail.Size = new System.Drawing.Size(347, 20);
+            this.txbEmail.TabIndex = 7;
             // 
             // lblEmail
             // 
@@ -358,6 +364,7 @@
             // 
             // txbPhone
             // 
+            this.txbPhone.Enabled = false;
             this.txbPhone.Location = new System.Drawing.Point(111, 110);
             this.txbPhone.Name = "txbPhone";
             this.txbPhone.Size = new System.Drawing.Size(347, 20);
@@ -374,6 +381,7 @@
             // 
             // txbPerName
             // 
+            this.txbPerName.Enabled = false;
             this.txbPerName.Location = new System.Drawing.Point(111, 42);
             this.txbPerName.Name = "txbPerName";
             this.txbPerName.Size = new System.Drawing.Size(347, 20);
@@ -421,6 +429,7 @@
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.Size = new System.Drawing.Size(508, 561);
             this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellPersonClickEvent);
             // 
             // tpCategory
             // 
@@ -1170,20 +1179,18 @@
         private System.Windows.Forms.TextBox txbPerName;
         private System.Windows.Forms.Label lblPerName;
         private System.Windows.Forms.TextBox txbPerID;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbEmail;
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.ComboBox cbSex;
         private System.Windows.Forms.Label lblSex;
         private System.Windows.Forms.TextBox txbAddress;
         private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label lblDateModifier;
-        private System.Windows.Forms.TextBox txbDateCreated;
         private System.Windows.Forms.Label lblDateCreated;
         private System.Windows.Forms.Button btnAddPerson;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDeletePerson;
+        private System.Windows.Forms.Button btnUpdatePerson;
         private System.Windows.Forms.DataGridView dgvCategory;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnDeleteCate;
@@ -1237,5 +1244,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NotifyIcon niDashboard;
         private System.Windows.Forms.NumericUpDown nupMaxStudent;
+        private System.Windows.Forms.DateTimePicker dtpDateModifier;
+        private System.Windows.Forms.DateTimePicker dtpDateCreated;
     }
 }
